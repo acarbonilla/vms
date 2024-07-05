@@ -1,0 +1,221 @@
+{% extends 'core/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<style>
+.form-check{
+   height:40px;
+   width: 40px;
+ }
+ #hideme{
+    background-color:orange;
+    display:none;
+    }
+</style>
+<div class="container">
+    <h2 class="text-center">ZFC PLANT VISITOR REGISTRATION FORM</h2>
+        <p style="font-style: italic;">Please answer this form completely and eligibly.</p>
+    <div class="row border p-2 mb-3">
+        <div class="col-sm-5">
+            <form action="" method="POST">
+                {% csrf_token %}
+
+             <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Fullname</span>
+                    {% render_field form.fullName class="form-control" placeholder="Complete Name"%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Company Name</span>
+                    {% render_field form.companyName class="form-control" placeholder="Complete Company Name"%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Company Address</span>
+                    {% render_field form.companyAddress class="form-control" placeholder="Complete Company Address"%}
+                </div>
+
+                 <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Reason of Request</span>
+                    {% render_field form.reasonOfRequest class="form-control" placeholder="Reason for the visit/Business"%}
+                </div>
+        </div>
+        <div class="col-sm-1"> </div>
+        <div class="col-sm-6">
+            <h5>Date(s) of Visit:</h5>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">From:</span>
+                {% render_field form.dateFrom class="form-control" type="date"%}
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" >To</span>
+                {% render_field form.dateTo class="form-control" type="date"%}
+            </div>
+
+             <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">Contact Person</span>
+                {% render_field form.contactPerson class="form-select"%}
+            </div>
+
+            <div class="input-group mb-3 border">
+                <span class="input-group-text" id="basic-addon3">Conformed with Appointment</span>
+                &nbsp;  &nbsp;
+                {% render_field form.appointment class="form-check"%}
+            </div>
+
+            <div class="input-group mb-3 border">
+                <span class="input-group-text" id="basic-addon3">No appointment but access has been authorize:</span>
+                &nbsp;  &nbsp;
+                {% render_field form.noAppointment class="form-check"%}
+            </div>
+
+             <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">Guard in Charge</span>
+                {% render_field form.guard class="form-control" placeholder="Fullname of Guard in Charge" %}
+            </div>
+        </div>
+    </div> <!-- End of Upper Row -->
+
+    <div class="row border p-3 mt-2 mb-5">
+            <div class="col-sm-6">
+                 <p>1. Last place visited(indicate town/city and province) prior this visit at ZFC:</p>
+                 <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Last Place Visited</span>
+                    {% render_field form.placesVisited class="form-control" placeholder="ex. Manila, Davao, etc." %}
+                </div>
+
+                <p>2. At present, or in the last seven days, are you suffering from:</p>
+                <div class="input-group mb-3">
+                   &nbsp; &nbsp; <span class="input-group-text" id="basic-addon3">2.1 Bowel disorder, diarrhea and /or vomiting?
+                    </span>
+                    &nbsp; &nbsp;
+                    {% render_field form.bdv class="form-check"%}
+                </div>
+
+                <div class="input-group mb-3">
+                   &nbsp; &nbsp; <span class="input-group-text" id="basic-addon3">
+                        2.2 Sore Throat with fever?
+                    </span>
+                     &nbsp; &nbsp;
+                    {% render_field form.soreThroat class="form-check"%}
+                </div>
+
+                <div class="input-group mb-3">
+                   &nbsp; &nbsp; <span class="input-group-text" id="basic-addon3">
+                      2.3 Colds, cough, stomach pain, nausea or flu/fever?
+                    </span>
+                     &nbsp; &nbsp;
+                    {% render_field form.cold class="form-check"%}
+                </div>
+
+                <div class="input-group mb-3">
+                    &nbsp; &nbsp; <span class="input-group-text" id="basic-addon3">
+                     2.4  Mumps, measles, chickenpox?
+                    </span>
+                     &nbsp; &nbsp;
+                    {% render_field form.mumps class="form-check"%}
+                </div>
+
+                <div class="input-group mb-3">
+                   &nbsp; &nbsp; <span class="input-group-text" id="basic-addon3">
+                      2.5 Skin infections of the hands, arms or face?
+                    </span>
+                     &nbsp; &nbsp;
+                    {% render_field form.skin class="form-check"%}
+                </div>
+                <div class="input-group mb-3">
+                   &nbsp; &nbsp; <span class="input-group-text" id="basic-addon3">
+                    2.6  Styes,discharge from eye/ear/gums/nose/mouth/or any form of infection?
+                    </span>
+                    &nbsp; &nbsp;&nbsp;
+                    {% render_field form.styes class="form-check"%}
+                </div>
+
+                <div class="input-group mb-3">
+                   &nbsp; &nbsp; <span class="input-group-text" id="basic-addon3">
+                     2.7   Yellowing of skin/ Jaundice
+                    </span>
+                     &nbsp; &nbsp;
+                    {% render_field form.jaundice class="form-check"%}
+                </div>
+
+                <div class="input-group mb-3">
+                  &nbsp; &nbsp;  <span class="input-group-text" id="basic-addon3">
+                     2.8   Visibly Infected skin lesion(boils, cuts)
+                    </span>
+                     &nbsp; &nbsp;
+                    {% render_field form.cuts class="form-check"%}
+                </div>
+
+                <div class="input-group mb-3">
+                   &nbsp; &nbsp; <span class="input-group-text" id="basic-addon3">
+                     2.9   A recurring infection of the skin, ear or throat?
+                    </span>
+                     &nbsp; &nbsp;
+                    {% render_field form.infection class="form-check"%}
+                </div>
+
+            </div>
+
+             <div class="col-sm-6">
+
+
+                <p> 3. Have you ever had typhoid fever? </p>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">
+                     Typhoid fever?
+                    </span>
+                    &nbsp; &nbsp;
+                    {% render_field form.typhoid class="form-check"%}
+                </div>
+                <p> 4. Countries visited in the last 6 weeks:</p>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3"></span>
+                    {% render_field form.country class="form-control" placeholder="e.g. USA, Singapore, etc. / NA if NONE."%}
+                </div>
+
+                 <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Body Temperature</span>
+                    {% render_field form.temp class="form-control" placeholder=""%}
+                 </div>
+
+                 <!-- This is for the Declaration of Understanding -->
+
+                  <h3>
+                    <strong>
+                        DECLARATION OF UNDERSTANDING/ CONFIDENTIALITY AGREEMENT
+                    </strong>
+                  </h3>
+                        <p>
+                                By checking the Agreement, I clarify <br/>
+                            1) That all information above are true;<br/>
+                            2) That I have understood Zenith Foods Corporation's policies and guidelines as posted <br/>
+                            at the visitor's changing room and/or as explained to me by a ZFC Representative; <br/>
+                            3) That I agree not to divulge in public all confidential matters pertaining a ZFC/JFC; and <br/>
+                            4) That I agree to follow all ZFC policies and subject myself to all regulations therein.
+                        </p>
+
+                  <div class="input-group mb-3 mt-2">
+                    <span class="input-group-text" id="basic-addon3" aria-required="true">Agreement</span>
+                    &nbsp; &nbsp;
+                    {% render_field form.agreement class="form-check"%}
+                         &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
+                     <span class="input-group-text" >Date Signed</span>
+
+                    {% render_field form.dateSigned class="form-control" type="date"%}
+                 </div>
+                <input aria-controls="offcanvasTop" class="btn btn-primary"
+                       data-bs-target="#offcanvasTop" data-bs-toggle="offcanvas"
+                       type="submit" value="Submit"/>
+                 </form>
+            </div>
+
+    <!-- End of Mid Row -->
+    </div>
+
+</div>
+    <script type="text/javascript">
+
+
+
+{% endblock %}

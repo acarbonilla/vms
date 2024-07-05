@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="container">
+
+    <div class="row p-2 mb-3">
+        <div class="col-sm-3">
+        </div>
+
+        <div class="col-sm-5 border m-2 p-4">
+            <h2 class="text-center">Sign Up!</h2>
+            <form action="{% url 'vmsRegister' %}" method="POST">
+                {% csrf_token %}
+
+                 <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Firstname:</span>
+                        {% render_field form.first_name class="form-control" placeholder="Firstname"%}
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Lastname:</span>
+                        {% render_field form.last_name class="form-control" placeholder="lastname"%}
+                    </div>
+
+                     <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Username:</span>
+                        {% render_field form.username class="form-control" placeholder="Username"%}
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Password:</span>
+                        {% render_field form.password1 class="form-control" type="password"%}
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Password Confirmation:</span>
+                        {% render_field form.password2 class="form-control" type="password"%}
+                    </div>
+                     <input aria-controls="offcanvasTop" class="btn btn-primary"
+                           data-bs-target="#offcanvasTop" data-bs-toggle="offcanvas"
+                           type="submit" value="Submit"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

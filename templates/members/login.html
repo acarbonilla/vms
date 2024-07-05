@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+        </div>
+
+        <div class="col-sm-4 m-3 p-4 border">
+             <h2 class="text-center">ZFC Login</h2>
+            <form action="" method="POST">
+                {%csrf_token%}
+                <div class="mb-3">
+                    <input aria-describedby="emailHelp" class="form-control" name="username" placeholder="Username"
+                           type="text">
+                </div>
+                <div class="mb-3">
+                    <input class="form-control" name="password" placeholder="Password" type="password">
+                </div>
+                <button class="primaryAction mt-3 btn btn-info text-white" type="submit">Sign In</button> &nbsp; &nbsp;
+                <br/>
+            </form>
+
+            <h6>
+                Doesn't have account? Click
+                <a href="{% url 'vmsRegister' %}">SignUp</a>.
+            </h6>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+
+ <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon3">Approved?</span>
+    {% render_field form.approved class="form-select"%}
+ </div>
+
+ <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon3">Comment</span>
+    {% render_field form.comment class="form-control"%}
+</div>
+
+
+
+('fullName', 'companyName', 'companyAddress', 'reasonOfRequest', 'dateFrom', 'dateTo', 'contactPerson',
+                  'appointment', 'noAppointment', 'guard', 'placesVisited', 'bdv', 'soreThroat', 'cold', 'mumps',
+                  'skin', 'styes', 'jaundice', 'cuts', 'infection', 'typhoid', 'country', 'temp', 'agreement',
+                  'dateSigned')

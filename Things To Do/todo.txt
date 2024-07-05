@@ -1,0 +1,11 @@
+Achievement: June 25, 2024
+ - Core APP Model
+ - Visitor APP Model
+ - Run in Django admin
+ - No problem when filling the visitor form.
+
+ Working in Sign up and Sign in
+ - Sign in is working
+
+ I'm going to setup the visitor app
+ 

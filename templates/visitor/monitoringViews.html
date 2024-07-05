@@ -1,0 +1,86 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<meta content="15" http-equiv="refresh">
+<div class="container">
+
+        <div class="row m-2 p-2">
+
+            <div class="col-sm-12">
+                 <button class="btn btn-primary position-relative" type="button">
+                    Visitor Request
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{visitorReviewCount}}</span>
+                </button>
+                <hr>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID#</th>
+                        <th scope="col">Fullname</th>
+                        <th scope="col">Company Name</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Start From</th>
+                        <th scope="col">End To</th>
+                        <th scope="col">Approver</th>
+                         <th scope="col">Health Concern</th>
+
+                    </tr>
+                    </thead>
+                    {% for ticket in visitorReview %}
+                    <tbody>
+                    <tr>
+                        <td>
+
+                            <a class="btn btn-secondary" href="{% url 'zfcPermittedDetails' ticket.id %}">
+                                {{ticket.id}}
+                            </a>
+
+                        </td>
+                        <td>{{ticket.fullName}}</td>
+                        <td>{{ticket.companyName }}</td>
+                        <td>{{ticket.approved}}</td>
+                        <td>{{ticket.dateFrom}}</td>
+                        <td>{{ticket.dateTo}}</td>
+                        <td>{{ticket.contactPerson}}</td>
+                        <!-- This is where if and else -->
+                        {% if ticket.bdv %}
+                            <td><i class="fa fa-warning" style="font-size:60px;color:red"></i></td>
+                        {% elif ticket.soreThroat %}
+                            <td><i class="fa fa-warning" style="font-size:60px;color:red"></i></td>
+                        {% elif ticket.cold %}
+                            <td><i class="fa fa-warning" style="font-size:60px;color:red"></i></td>
+                        {% elif ticket.mumps %}
+                            <td><i class="fa fa-warning" style="font-size:60px;color:red"></i></td>
+                        {% elif ticket.skin %}
+                            <td><i class="fa fa-warning" style="font-size:60px;color:red"></i></td>
+                        {% elif ticket.styes %}
+                            <td><i class="fa fa-warning" style="font-size:60px;color:red"></i></td>
+                        {% elif ticket.jaundice %}
+                            <td><i class="fa fa-warning" style="font-size:60px;color:red"></i></td>
+                        {% elif ticket.cuts %}
+                            <td><i class="fa fa-warning" style="font-size:60px;color:red"></i></td>
+                        {% elif ticket.infection %}
+                            <td><i class="fa fa-warning" style="font-size:60px;color:red"></i></td>
+                        {% elif ticket.typhoid %}
+                            <td><i class="fa fa-warning" style="font-size:60px;color:red"></i></td>
+                        {% elif ticket.temp > 38 %}
+                            <td><i class="fa fa-warning" style="font-size:60px;color:red"></i></td>
+
+                        {% else %}
+                            <td>No Health Concern</td>
+                        {% endif %}
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+
+                </table>
+
+            </div>
+        </div>
+
+</div>
+
+
+
+
+{% endblock %}

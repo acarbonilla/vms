@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+{% block title %} System Information {% endblock %}
+{% load widget_tweaks %}
+{% block content %}
+
+{% if formyes == 0%}
+   <form action="" method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3">Account Name:</span>
+            {% render_field form.name class="form-select"%}
+        </div>
+
+        <div class="input-group mb-3" >
+            <span class="input-group-text">Company Name:</span>
+            {% render_field form.companyName class="form-control"%}
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3">Company Address:</span>
+            {% render_field form.companyAddress class="form-control"%}
+        </div>
+
+        <input aria-controls="offcanvasTop" class="btn btn-primary"
+               data-bs-target="#offcanvasTop" data-bs-toggle="offcanvas"
+               type="submit" value="Submit"/>
+
+    </form>
+{% else %}
+    <h1>Done Fill up on this form.Click here if you want to edit.</h1>
+{% endif%}
+
+{% endblock %}

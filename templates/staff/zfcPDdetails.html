@@ -1,0 +1,397 @@
+{% extends 'core/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<style>
+    #sub{
+        background-color: #7EffE3;
+        }
+    #textSize{
+        font-size: 20px;
+
+        }
+    .row{
+        margin: 5px;
+        padding: 3px;
+        }
+</style>
+
+<div class="container">
+    <h2 class="text-center">ZFC PVRF - Filled Out</h2>
+
+    <div class="row">
+        <div class="col-sm-5 " id="textSize">
+
+            <div class="row border">
+                <div class="col-sm-5" id="sub">
+                    <p>Request ID:</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <p>{{zfcPD.id}}</p>
+                </div>
+            </div>
+
+            <div class="row border">
+                <div class="col-sm-5" id="sub">
+                    <p>Fullname:</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <p>{{zfcPD.fullName}}</p>
+                </div>
+            </div>
+
+
+            <div class="row border">
+                <div class="col-sm-5 border" id="sub">
+                    <p>Company Name:</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <p>{{zfcPD.companyName}}</p>
+                </div>
+            </div>
+
+
+            <div class="row border">
+                <div class="col-sm-5 border" id="sub">
+                    <p>Company Address:</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <p>{{zfcPD.companyAddress}}</p>
+                </div>
+            </div>
+
+            <div class="row border">
+                <div class="col-sm-5 border" id="sub">
+                    <p>Reason Of Request:</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <p>{{zfcPD.reasonOfRequest}}</p>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-1">
+
+        </div>
+
+        <div class="col-sm-5 " id="textSize">
+            <div class="row border">
+                <div class="col-sm-5" id="sub">
+                    <p>Start From:</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <p>{{zfcPD.dateFrom}}</p>
+                </div>
+            </div>
+
+
+            <div class="row border">
+                <div class="col-sm-5 border" id="sub">
+                    <p>To</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <p>{{zfcPD.dateTo}}</p>
+                </div>
+            </div>
+
+
+            <div class="row border">
+                <div class="col-sm-5 border" id="sub">
+                    <p>Contact Person:</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <p>{{zfcPD.contactPerson}}</p>
+                </div>
+            </div>
+
+            {% if zfcPD.appointment%}
+            <div class="row border">
+                <div class="col-sm-5 border" id="sub">
+                    <p>Conformed with Appointment:</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <span style='font-size:50px;'>&#9745;</span>
+                </div>
+            </div>
+            {% else %}
+
+            {% endif %}
+
+            {% if zfcPD.noAppointment%}
+            <div class="row border">
+                <div class="col-sm-5 border" id="sub">
+                    <p>No Appointment:</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <span style='font-size:50px;'>&#9745;</span>
+                </div>
+            </div>
+            {% else %}
+
+            {% endif %}
+
+            <div class="row border">
+                <div class="col-sm-5" id="sub">
+                    <p>Security Personnel</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <p>{{zfcPD.guard}}</p>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- Bottom Row -->
+
+    <div class="row">
+        <div class="col-sm-5 " id="textSize">
+            <div class="row border">
+                <div class="col-sm-5" id="sub">
+                    <p>Last Place Visited:</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <p>{{zfcPD.placesVisited}}</p>
+                </div>
+            </div>
+
+            <div class="row border">
+                <div class="col-sm-5" id="sub">
+                    <p>Last Countries Visited:</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <p>{{zfcPD.country}}</p>
+                </div>
+            </div>
+
+            <div class="row border">
+                <div class="col-sm-5" id="sub">
+                    <p>Body Temperature:</p>
+                </div>
+
+                <div class="col-sm-6">
+                    {% if zfcPD.temp >= 38 %}
+                        {{zfcPD.temp}} &#8451 <i class="fa fa-warning" style="font-size:60px;color:red"></i>
+                    {% else %}
+                        <p>{{zfcPD.temp}} &#8451</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% if zfcPD.agreement %}
+            <div class="row border">
+                <div class="col-sm-5" id="sub">
+                    <p>Declaration Of Agreement</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <span style='font-size:50px;'>&#9745;</span>
+                </div>
+            </div>
+            {% else %}
+            <div class="row border">
+                <div class="col-sm-5 bg-danger" id="sub">
+                    <p class="text-light">Declaration Of Agreement</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <i class="fa fa-warning" style="font-size:60px;color:red"></i>
+                </div>
+            </div>
+            {% endif %}
+
+
+                <div class="row border">
+                <div class="col-sm-5 border" id="sub">
+                    <p>Comment</p>
+                </div>
+
+                <div class="col-sm-6 bg-info text-white">
+                    <p>{{zfcPD.comment}}</p>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-sm-1">
+
+        </div>
+        <!-- Left side -->
+
+        <div class="col-sm-5 " id="textSize">
+            {% if zfcPD.bdv %}
+            <div class="row border">
+                <div class="col-sm-5 bg-danger" id="sub">
+                    <p class="text-light">Bowel Disorder, diarrhea, and vomiting</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <i class="fa fa-warning" style="font-size:60px;color:red"></i>
+                </div>
+            </div>
+            {% else %}
+
+            {% endif %}
+
+            <!-- This is for sore throat -->
+            {% if zfcPD.soreThroat %}
+            <div class="row border">
+                <div class="col-sm-5 bg-danger" id="sub">
+                    <p class="text-light">Sore throat with fever</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <i class="fa fa-warning" style="font-size:60px;color:red"></i>
+                </div>
+            </div>
+            {% else %}
+
+            {% endif %}
+
+
+            <!-- This is for cold -->
+            {% if zfcPD.cold %}
+            <div class="row border">
+                <div class="col-sm-5 bg-danger" id="sub">
+                    <p class="text-light">Colds, cough, stomach pain...</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <i class="fa fa-warning" style="font-size:60px;color:red"></i>
+                </div>
+            </div>
+            {% else %}
+
+            {% endif %}
+            <!-- This is for mumps -->
+            {% if zfcPD.mumps %}
+            <div class="row border">
+                <div class="col-sm-5 bg-danger" id="sub">
+                    <p class="text-light">Mumps, measles, chickenpox</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <i class="fa fa-warning" style="font-size:60px;color:red"></i>
+                </div>
+            </div>
+            {% else %}
+
+            {% endif %}
+            <!-- This is for skin-->
+            {% if zfcPD.skin %}
+            <div class="row border">
+                <div class="col-sm-5 bg-danger" id="sub">
+                    <p class="text-light">Skin Infections of the hands, arms, or face.</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <i class="fa fa-warning" style="font-size:60px;color:red"></i>
+                </div>
+            </div>
+            {% else %}
+
+            {% endif %}
+            <!-- This is for styes -->
+            {% if zfcPD.styes %}
+            <div class="row border">
+                <div class="col-sm-5 bg-danger" id="sub">
+                    <p class="text-light">Sytes, discharge from eye/ear/....</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <i class="fa fa-warning" style="font-size:60px;color:red"></i>
+                </div>
+            </div>
+            {% else %}
+
+            {% endif %}
+
+            <!-- This is for jaundice -->
+            {% if zfcPD.jaundice %}
+            <div class="row border">
+                <div class="col-sm-5 bg-danger" id="sub">
+                    <p class="text-light">Yellowing of Skin/Jaundice</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <i class="fa fa-warning" style="font-size:60px;color:red"></i>
+                </div>
+            </div>
+            {% else %}
+
+            {% endif %}
+
+            <!-- This is for cuts-->
+            {% if zfcPD.cuts %}
+            <div class="row border">
+                <div class="col-sm-5 bg-danger" id="sub">
+                    <p class="text-light">Visibly Infected skin lesion</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <i class="fa fa-warning" style="font-size:60px;color:red"></i>
+                </div>
+            </div>
+            {% else %}
+
+            {% endif %}
+
+            <!-- This is for infection -->
+            {% if zfcPD.infection %}
+            <div class="row border">
+                <div class="col-sm-5 bg-danger" id="sub">
+                    <p class="text-light">A recurring infection of skin....</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <i class="fa fa-warning" style="font-size:60px;color:red"></i>
+                </div>
+            </div>
+            {% else %}
+
+            {% endif %}
+
+            <!-- This is for typhoid -->
+            {% if zfcPD.typhoid %}
+            <div class="row border">
+                <div class="col-sm-5 bg-danger" id="sub">
+                    <p class="text-light">Typhoid Fever.</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <i class="fa fa-warning" style="font-size:60px;color:red"></i>
+                </div>
+            </div>
+            {% else %}
+
+            {% endif %}
+
+            <a class="btn btn-primary" href="
+            {{request.META.HTTP_REFERER}}" role="button">Go Back
+            </a>
+
+
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock %}
+
+
