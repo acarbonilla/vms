@@ -84,7 +84,28 @@
 
             <!-- This area is for user profile -->
             {% if user.is_authenticated %}
-
+            <nav class="d-flex text-white">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                           role="button">
+                            {{user}}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="">Profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'vmsLogout' %}">Sign Out</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
             {% else %}
 
             {% endif %}
