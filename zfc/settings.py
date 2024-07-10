@@ -17,7 +17,7 @@ DEBUG = True
 
 # This is my new comment.
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.2']
 
 
 # Application definition
@@ -76,8 +76,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'vms3',
-        'USER': 'acarbonilla',
-        'PASSWORD': 'XiaCarb@23',
+        'USER': 'root',
+        'PASSWORD': '$Everyday23',
         'HOST': 'localhost',
         'PORT': '3306',
     }
