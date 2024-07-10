@@ -2,56 +2,49 @@
 {% load widget_tweaks %}
 {% block content %}
 <style>
-.form-check{
-   height:40px;
-   width: 40px;
- }
- #hideme{
-    background-color:orange;
-    display:none;
-    }
+    .form-check{
+       height:40px;
+       width: 40px;
+     }
+     #hideme{
+        background-color:orange;
+        display:none;
+        }
 </style>
 <div class="container">
     <h2 class="text-center">ZFC PLANT VISITOR REGISTRATION FORM</h2>
-        <p style="font-style: italic;">Please answer this form completely and eligibly.</p>
+    <p style="font-style: italic;">Please answer this form completely and eligibly.</p>
     <div class="row border p-2 mb-3">
         <div class="col-sm-5">
             <form action="" method="POST">
                 {% csrf_token %}
+                <div class="row border p-3 mt-2 mb-5">
+                    <div class="col-sm-6">
+                        {% if user.is_staff %}
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon3">Approved?</span>
+                            {% render_field form.approved class="form-select"%}
+                        </div>
 
-
-
-    <div class="row border p-3 mt-2 mb-5">
-
-             <div class="col-sm-6">
-
-
-                 {% if user.is_staff %}
-                      <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon3">Approved?</span>
-                        {% render_field form.approved class="form-select"%}
-                     </div>
-
-                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon3">Comment</span>
-                        {% render_field form.comment class="form-control"%}
-                    </div>
-                {% endif %}
-                 <a class="btn btn-primary" href="
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon3">Comment</span>
+                            {% render_field form.comment class="form-control"%}
+                        </div>
+                        {% endif %}
+                        <a class="btn btn-primary" href="
                     {{request.META.HTTP_REFERER}}" role="button">Go Back
-                 </a>
-                <input aria-controls="offcanvasTop" class="btn btn-primary"
-                       data-bs-target="#offcanvasTop" data-bs-toggle="offcanvas"
-                       type="submit" value="Submit"/>
-                 </form>
-            </div>
+                        </a>
+                        <input aria-controls="offcanvasTop" class="btn btn-primary"
+                               data-bs-target="#offcanvasTop" data-bs-toggle="offcanvas"
+                               type="submit" value="Submit"/>
+            </form>
+        </div>
 
-    <!-- End of Mid Row -->
+        <!-- End of Mid Row -->
     </div>
 
 </div>
-    <script type="text/javascript">
+<script type="text/javascript">
 
 
-
-{% endblock %}
+    {% endblock %}
