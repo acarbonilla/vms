@@ -20,7 +20,7 @@
                 {% csrf_token %}
                 <div class="row border p-3 mt-2 mb-5">
                     <div class="col-sm-6">
-                        {% if user.is_staff %}
+                        {% if user.is_authenticated %}
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon3">Approved?</span>
                             {% render_field form.approved class="form-select"%}
