@@ -17,8 +17,8 @@ DEBUG = True
 
 # This is my new comment.
 
-ALLOWED_HOSTS = ['192.168.1.2']
-
+# ALLOWED_HOSTS = ['192.168.1.2']
+ALLOWED_HOSTS = ['192.11.200.126']
 
 # Application definition
 
