@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 from django.db.models.functions import Now
 from django.shortcuts import render, redirect
@@ -23,26 +23,31 @@ def zfcEmployees(request):
 def zfcPermitted(request):
     zfcVisitorPermitted = (RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Permitted")
                            .filter(dateTo__gte=Now() - timedelta(1)))
-    zfcVisitorPermittedCount = (RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Permitted")
-                           .filter(dateTo__gte=Now() - timedelta(1))).count()
+    zfcVisitorPermittedCount = (
+        RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Permitted")
+        .filter(dateTo__gte=Now() - timedelta(1))).count()
     context = {'zfcVisitorPermitted': zfcVisitorPermitted, 'zfcVisitorPermittedCount': zfcVisitorPermittedCount}
     return render(request, 'staff/zfcPermitted.html', context)
 
 
 @login_required(login_url='vmsLogin')
 def zfcExpired(request):
+    one_week_ago = datetime.today() - timedelta(days=7)
     zfcVisitorExpired = (RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Permitted")
-                         .filter(dateTo__lt=Now() - timedelta(1)))
+                         .filter(dateTo__lt=Now() - timedelta(1))).filter(dateTo__gte=one_week_ago)
     zfcVisitorExpiredCount = (RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Permitted")
-                         .filter(dateTo__lt=Now() - timedelta(1))).count()
+                              .filter(dateTo__lt=Now() - timedelta(1))).filter(dateTo__gte=one_week_ago).count()
     context = {'zfcVisitorExpired': zfcVisitorExpired, 'zfcVisitorExpiredCount': zfcVisitorExpiredCount}
     return render(request, 'staff/zfcPermitExpired.html', context)
 
 
 @login_required(login_url='vmsLogin')
 def zfcDenied(request):
-    zfcVisitorDenied = RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Denied")
-    zfcVisitorDeniedCount = RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Denied").count()
+    one_week_ago = datetime.today() - timedelta(days=7)
+    zfcVisitorDenied = RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Denied",
+                                                  created__gte=one_week_ago)
+    zfcVisitorDeniedCount = RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Denied",
+                                                       created__gte=one_week_ago).count()
     context = {'zfcVisitorDenied': zfcVisitorDenied, 'zfcVisitorDeniedCount': zfcVisitorDeniedCount}
     return render(request, 'staff/zfcRequestDenied.html', context)
 

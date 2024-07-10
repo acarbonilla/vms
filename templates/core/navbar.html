@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">ZFC VMS</a>
+        <a class="navbar-brand" href="#">Zenith Food Corporation</a>
         <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                 class="navbar-toggler"
                 data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
@@ -27,18 +27,18 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item" href="{% url 'zfcEmployees' %}">ZFC For Review</a>
+                            <a class="dropdown-item" href="{% url 'zfcEmployees' %}">Request Review</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{% url 'zfcPermitted'%}">ZFC Permitted</a>
+                            <a class="dropdown-item" href="{% url 'zfcPermitted'%}">Request Granted</a>
                         </li>
 
                          <li>
-                            <a class="dropdown-item" href="{% url 'zfcExpired' %}">ZFC Permit Expired</a>
+                            <a class="dropdown-item" href="{% url 'zfcExpired' %}">Request Expired</a>
                         </li>
 
                          <li>
-                            <a class="dropdown-item" href="{% url 'zfcDenied' %}">ZFC Request Denied</a>
+                            <a class="dropdown-item" href="{% url 'zfcDenied' %}">Request Denied</a>
                         </li>
 
                     </ul>
@@ -46,7 +46,7 @@
 
                 {% else %}<!-- If user not login this is the navbar they can see -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'vHome' %}">Visitor Registration Form</a>
+                    <a class="nav-link" href="{% url 'vHome' %}">VR Form</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{% url 'monitoringViews'%}"
@@ -55,14 +55,14 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item" href="{% url 'monitoringViews'%}">For Review</a>
+                            <a class="dropdown-item" href="{% url 'monitoringViews'%}">Request Review</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{% url 'permitted'%}">Permitted</a>
+                            <a class="dropdown-item" href="{% url 'permitted'%}">Request Granted</a>
                         </li>
 
                          <li>
-                            <a class="dropdown-item" href="{% url 'expired' %}">Permit Expired</a>
+                            <a class="dropdown-item" href="{% url 'expired' %}">Request Expired</a>
                         </li>
 
                          <li>
