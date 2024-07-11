@@ -1,15 +1,27 @@
 {% extends 'core/base.html' %}
 {% load widget_tweaks %}
 {% block content %}
+<style>
+    .ProfileBorder{
+   border-radius: 15px 50px;
+     padding: 20px;
+      box-shadow: 10px 10px 5px lightblue;
+  }
 
+  .title{
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+  }
+
+
+</style>
 <div class="container">
 
     <div class="row p-2 mb-3">
         <div class="col-sm-3">
         </div>
-
-        <div class="col-sm-5 border m-2 p-4">
-            <h2 class="text-center">Profile Form</h2>
+        <div class="col-sm-5 border m-2 p-4 ProfileBorder">
+            <h2 class="text-center title">Profile Form</h2>
             <form action="" method="POST">
                 {% csrf_token %}
                  <div class="input-group mb-3">
@@ -30,6 +42,9 @@
                            data-bs-target="#offcanvasTop" data-bs-toggle="offcanvas"
                            type="submit" value="Submit"/>
             </form>
+            <small>
+                Note: Fill up this form so you can accept visitor
+            </small>
         </div>
     </div>
 </div>
