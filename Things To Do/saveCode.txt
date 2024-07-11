@@ -1,17 +1,44 @@
+{% extends 'core/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
 
- <div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon3">Approved?</span>
-    {% render_field form.approved class="form-select"%}
- </div>
+<div class="container">
+    <h2 class="text-center"> Approver FORM</h2>
+    <div class="row border">
+         <div class="col-sm-3">
 
- <div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon3">Comment</span>
-    {% render_field form.comment class="form-control"%}
+         </div>
+             <div class="col-sm-5 border p-3 mt-2 mb-5">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {% if user.is_authenticated %}
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon3">Approve?</span>
+                            {% render_field form.approved class="form-select"%}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon3">Comment</span>
+                            {% render_field form.comment class="form-control"%}
+                        </div>
+                         <a class="btn btn-primary" href="
+                                {{request.META.HTTP_REFERER}}" role="button">Go Back
+                         </a>
+                           <input aria-controls="offcanvasTop" class="btn btn-primary"
+                               data-bs-target="#offcanvasTop" data-bs-toggle="offcanvas"
+                           type="submit" value="Submit"/>
+                    {% else %}
+                        <a class="btn btn-primary" href="
+                            {{request.META.HTTP_REFERER}}" role="button">Go Back
+                        </a>
+                    {% endif %}
+             </div>
+
+            <div class="col-sm 3">
+
+                </form>
+            </div>
+    </div>
+
 </div>
-
-
-
-('fullName', 'companyName', 'companyAddress', 'reasonOfRequest', 'dateFrom', 'dateTo', 'contactPerson',
-                  'appointment', 'noAppointment', 'guard', 'placesVisited', 'bdv', 'soreThroat', 'cold', 'mumps',
-                  'skin', 'styes', 'jaundice', 'cuts', 'infection', 'typhoid', 'country', 'temp', 'agreement',
-                  'dateSigned')
+{% endblock %}
