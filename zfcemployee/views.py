@@ -56,7 +56,7 @@ def zfcDenied(request):
 
 def zfcPermittedDetails(request, pk):
     zfcPD = RequestForm.objects.get(id=pk)
-    context = {'zfcPD': zfcPD}
+    context = {'zfcPD': zfcPD, 'title': zfcPD.id}
     return render(request, 'staff/zfcPDdetails.html', context)
 
 
