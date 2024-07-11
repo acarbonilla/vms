@@ -28,7 +28,7 @@ def vmsLogin(request):
             return redirect('vmsLogin')
 
     else:
-        return render(request, 'members/login.html', {})
+        return render(request, 'members/login.html', {'title': 'ZFC Login'})
 
 
 def vmsLogout(request):
@@ -51,5 +51,5 @@ def vmsRegister(request):
     else:
         form = UserForm()
 
-    context = {'form': form}
+    context = {'form': form, 'title': 'ZFC Sign Up'}
     return render(request, 'members/vmsregister.html', context)
