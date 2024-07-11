@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import login_required
 def zfcEmployees(request):
     visitorReq = RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Review")
     visitorReqCount = RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Review").count()
-    context = {'visitorReq': visitorReq, 'visitorReqCount': visitorReqCount}
+    context = {'visitorReq': visitorReq, 'visitorReqCount': visitorReqCount, 'title': 'Request Review'}
     return render(request, 'staff/zfcemp.html', context)
 
 
@@ -26,7 +26,8 @@ def zfcPermitted(request):
     zfcVisitorPermittedCount = (
         RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Permitted")
         .filter(dateTo__gte=Now() - timedelta(1))).count()
-    context = {'zfcVisitorPermitted': zfcVisitorPermitted, 'zfcVisitorPermittedCount': zfcVisitorPermittedCount}
+    context = {'zfcVisitorPermitted': zfcVisitorPermitted, 'zfcVisitorPermittedCount': zfcVisitorPermittedCount,
+               'title': 'Request Approved'}
     return render(request, 'staff/zfcPermitted.html', context)
 
 
@@ -37,7 +38,8 @@ def zfcExpired(request):
                          .filter(dateTo__lt=Now() - timedelta(1))).filter(dateTo__gte=one_week_ago)
     zfcVisitorExpiredCount = (RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Permitted")
                               .filter(dateTo__lt=Now() - timedelta(1))).filter(dateTo__gte=one_week_ago).count()
-    context = {'zfcVisitorExpired': zfcVisitorExpired, 'zfcVisitorExpiredCount': zfcVisitorExpiredCount}
+    context = {'zfcVisitorExpired': zfcVisitorExpired, 'zfcVisitorExpiredCount': zfcVisitorExpiredCount,
+               'title': 'Request Expired'}
     return render(request, 'staff/zfcPermitExpired.html', context)
 
 
@@ -48,7 +50,8 @@ def zfcDenied(request):
                                                   created__gte=one_week_ago)
     zfcVisitorDeniedCount = RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Denied",
                                                        created__gte=one_week_ago).count()
-    context = {'zfcVisitorDenied': zfcVisitorDenied, 'zfcVisitorDeniedCount': zfcVisitorDeniedCount}
+    context = {'zfcVisitorDenied': zfcVisitorDenied, 'zfcVisitorDeniedCount': zfcVisitorDeniedCount,
+               'title': 'Request Denied'}
     return render(request, 'staff/zfcRequestDenied.html', context)
 
 
@@ -68,7 +71,7 @@ def VisitorRequestFormEditView(request, pk):
     if form.is_valid():
         form.save()
         return redirect('zfcEmployees')
-    context = {'form': form}
+    context = {'form': form, 'title': 'Approval'}
     return render(request, 'staff/requestEditForm.html', context)
 
 
@@ -83,7 +86,7 @@ def zfcProfile(request):
     else:
         form = ProfileForm(request.user)
 
-    context = {'form': form}
+    context = {'form': form, 'title': 'ZFC Employee Profile'}
     return render(request, 'staff/zfcprofile.html', context)
 
 
@@ -91,5 +94,5 @@ def zfcProfile(request):
 @login_required(login_url='vmsLogin')
 def zfcStaffEmployees(request):
     staff = RequestForm.objects.all()
-    context = {'staff': staff}
+    context = {'staff': staff, 'title': 'Administrator'}
     return render(request, 'staff/zfcStaffEmp.html', context)
