@@ -18,7 +18,7 @@ class VisitorRequestForm(ModelForm):
 class VisitorRequestFormEdit(ModelForm):
     class Meta:
         model = RequestForm
-        fields = '__all__'
+        fields = ('approved', 'comment')
 
 
 
