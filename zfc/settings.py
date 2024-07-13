@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-lop4=#jrnuq#i!r68uv^$1n1w^tg3m#z1w$$q8y2us^@o^#2=&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # This is my new comment.
 
