@@ -21,7 +21,7 @@
 
     <!-- This is where the internal CSS -->
     {% load static %}
-    <link rel="stylesheet" href="{% static 'zfcUser/css/main.css' %}" type="text/css">
+    <link href="{% static 'zfcUser/css/main.css' %}" rel="stylesheet" type="text/css">
 
     <!-- Tuturial for adding dynamic Title -->
     <!-- https://www.youtube.com/watch?v=BILPsvOnUPE -->
@@ -38,14 +38,10 @@
     <br/><br/><br/>
 
     <div class="row">
-        {% block body %}
         {% block content %}
 
         {% endblock %}
-        {% endblock %}
 
-        {% block extra_body %}
-        {% endblock %}
 
         {% if messages %}
         <div class="p-2">
@@ -56,19 +52,11 @@
         {% endif %}
 
     </div>
+
 </div>
-{% block scripts %}
 
-{% endblock %}
-
-{% block scripts2 %}
-
-{% endblock %}
-
-<script crossorigin="anonymous"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js">
-
-
+<script crossorigin="anonymous" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js">
 </script>
 </body>
 </html>

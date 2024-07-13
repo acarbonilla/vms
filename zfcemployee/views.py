@@ -89,10 +89,3 @@ def zfcProfile(request):
     context = {'form': form, 'title': 'ZFC Employee Profile'}
     return render(request, 'staff/zfcprofile.html', context)
 
-
-# This is for the Staff employees
-@login_required(login_url='vmsLogin')
-def zfcStaffEmployees(request):
-    staff = RequestForm.objects.all()
-    context = {'staff': staff, 'title': 'Administrator'}
-    return render(request, 'staff/zfcStaffEmp.html', context)

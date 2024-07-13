@@ -18,7 +18,7 @@ def vmsLogin(request):
         if user is not None:
             login(request, user)
             if user.is_staff:
-                return redirect('zfcStaffEmployees')
+                return redirect('managerPage')
             else:
                 return redirect('zfcEmployees')
 

@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <button class="btn btn-primary position-relative" type="button">
+                    Department
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        0</span>
+                </button>
+                <hr>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID#</th>
+                        <th scope="col">Name</th>
+                         <th scope="col">Created On</th>
+                         <th scope="col">Updated On</th>
+                         <th scope="col">Change Dept. Name</th>
+                    </tr>
+                    </thead>
+                    {% for depts in dept %}
+                    <tbody>
+                    <tr>
+                        <td>
+                          {{depts.id}}
+                        </td>
+                        <td>{{depts.name}}</td>
+                         <td>{{depts.created}}</td>
+                         <td>{{depts.updated | timesince}}</td>
+
+                        <td>
+                            <a class="btn btn-secondary" href="{% url 'mDeptFormEdit' depts.id %}">
+                               Edit
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

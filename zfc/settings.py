@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'members',
     'visitor',
     'zfcemployee',
+    'manager',
 
     'widget_tweaks',
 ]

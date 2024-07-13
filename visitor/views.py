@@ -22,7 +22,7 @@ def vHome(request):
         if 'submitted' in request.GET:
             submitted = True
 
-    context = {'form': form, 'title': 'VS Form'}
+    context = {'form': form, 'title': 'VR_ Form'}
     return render(request, 'visitor/vHomeView.html', context)
 
 

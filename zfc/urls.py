@@ -7,4 +7,5 @@ urlpatterns = [
     path('', include('members.urls')),
     path('vHome/', include('visitor.urls')),
     path('zfcemployee/', include('zfcemployee.urls')),
+    path('manager/', include('manager.urls')),
 ]
