@@ -59,7 +59,7 @@ def mDeptFormEdit(request, pk):
 # This is the list for user
 
 def mUserList(request):
-    userList = User.objects.all()
-    userListCount = User.objects.all().count()
+    userList = User.objects.filter(is_superuser=False)
+    userListCount = User.objects.filter(is_superuser=False).count()
     context = {'userList': userList, 'title': 'Listed User', 'userListCount': userListCount}
     return render(request, 'manager/listedUser.html', context)
