@@ -7,34 +7,36 @@
                 <button class="btn btn-primary position-relative" type="button">
                     Department
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {{deptCount}}</span>
+                        {{userListCount}}</span>
                 </button>
                 <hr>
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">ID#</th>
                         <th scope="col">Name</th>
-                         <th scope="col">Created On</th>
-                         <th scope="col">Last Updated</th>
-                         <th scope="col">Change Dept. Name</th>
+                         <th scope="col">Username</th>
+                         <th scope="col">Date Joined</th>
+                         <th scope="col">Last Login</th>
+                         <th scope="col">Active?</th>
                     </tr>
                     </thead>
-                    {% for depts in dept %}
+                    {% for userListed in userList %}
                     <tbody>
                     <tr>
+                       <td>{{userListed.first_name}} {{userListed.last_name}}</td>
+                        <td>{{userListed.username}}</td>
+                         <td>{{userListed.date_joined | timesince}}</td>
+                         <td>{{userListed.last_login | timesince}}</td>
                         <td>
-                          {{depts.id}}
+                             {% if userListed.is_active == 1 %}
+                            <p>Active User</p>
+                        {% else %}
+                            <p>Disabled Account</p>
+                        {% endif %}
                         </td>
-                        <td>{{depts.name}}</td>
-                         <td>{{depts.created}}</td>
-                         <td>{{depts.updated | timesince}}</td>
 
-                        <td>
-                            <a class="btn btn-secondary" href="{% url 'mDeptFormEdit' depts.id %}">
-                               Edit
-                            </a>
-                        </td>
+
+
                     </tr>
                     </tbody>
                     {% endfor %}

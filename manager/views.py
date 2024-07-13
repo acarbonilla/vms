@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 # This is for login required
@@ -20,7 +21,8 @@ def managerPage(request):
 @login_required(login_url='vmsLogin')
 def mDeptList(request):
     dept = Department.objects.all()
-    context = {'dept': dept, 'title': 'Department List'}
+    deptCount = Department.objects.all().count()
+    context = {'dept': dept, 'title': 'Department List', 'deptCount': deptCount}
     return render(request, 'manager/deptList.html', context)
 
 
@@ -53,3 +55,11 @@ def mDeptFormEdit(request, pk):
     context = {'form': form, 'title': 'Edit Department'}
     return render(request, 'manager/deptEditForm.html', context)
 
+
+# This is the list for user
+
+def mUserList(request):
+    userList = User.objects.all()
+    userListCount = User.objects.all().count()
+    context = {'userList': userList, 'title': 'Listed User', 'userListCount': userListCount}
+    return render(request, 'manager/listedUser.html', context)
