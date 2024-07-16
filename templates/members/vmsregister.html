@@ -29,12 +29,14 @@
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon3">Password:</span>
-                    {% render_field form.password1 class="form-control" type="password"%}
+                    {% render_field form.password1 class="form-control" type="password" id="myInput"%}
+                    <input type="checkbox" onclick="myFunction()" style="margin-left:2px; width:25px;"><small>Show Password</small>
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon3">Password Confirmation:</span>
-                    {% render_field form.password2 class="form-control" type="password"%}
+                    {% render_field form.password2 class="form-control" type="password" id="myInput2"%}
+                    <input type="checkbox" onclick="myFunction2()" style="margin-left:2px; width:25px;"><small>Show Password</small>
                 </div>
                 <a class="btn btn-primary formSubmitButton" href="
                      {{request.META.HTTP_REFERER}}" role="button">Cancel
@@ -44,6 +46,25 @@
                        type="submit" value="Submit"/>
 
             </form>
+<script>
+function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+    function myFunction2() {
+  var x = document.getElementById("myInput2");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
 
 
         </div>

@@ -1,6 +1,7 @@
 import json
 from datetime import timedelta, datetime
 import time
+from django.contrib import messages
 
 from django.contrib.auth.models import User
 from django.db.models.functions import Now
@@ -80,12 +81,15 @@ def VisitorRequestFormEditView(request, pk):
 
 @login_required(login_url='vmsLogin')
 def zfcProfile(request):
-    form = ProfileForm(request.user, request.POST)
-    if form.is_valid():
-        ticket = form.save(commit=False)
-        ticket.user = request.user
-        ticket.save()
-        return redirect('zfcEmployees')
+    if request.method == "POST":
+        form = ProfileForm(request.user, request.POST)
+        if form.is_valid():
+            ticket = form.save(commit=False)
+            ticket.user = request.user
+            ticket.save()
+            return redirect('zfcEmployees')
+        else:
+            messages.error(request, "Company ID Taken or You already filled up this form.")
     else:
         form = ProfileForm(request.user)
 

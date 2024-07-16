@@ -45,7 +45,10 @@
         {% if messages %}
         <div class="p-2">
             {% for message in messages %}
-            <div class="text-center border-bottom">{{message}}</div>
+                 <div class="text-center">
+                     <h3 class="text-info">{{message}}</h3>
+
+                 </div>
             {% endfor %}
         </div>
         {% endif %}

@@ -48,6 +48,9 @@ def vmsRegister(request):
             login(request, user)
             messages.success(request, "Registration Successful!")
             return redirect('zfcProfile')
+        else:
+            messages.error(request, "Please check the Password Input correctly.")
+            form = UserForm(request.POST)
     else:
         form = UserForm()
 
