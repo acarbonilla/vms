@@ -76,7 +76,8 @@ def mUserList(request):
 @login_required(login_url='vmsLogin')
 def pdfListView(request):
     pdfList = RequestForm.objects.filter(approved="Permitted")
-    context = {'pdfList': pdfList}
+    pdfListCount = RequestForm.objects.filter(approved="Permitted").count()
+    context = {'pdfList': pdfList, 'pdfListCount': pdfListCount}
     return render(request, 'pdf/pdf_main.html', context)
 
 
