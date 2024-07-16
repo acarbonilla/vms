@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand loginComp" href="#" style="color:white; text-shadow: 5px 2px 4px #ffa533;">
@@ -21,24 +22,23 @@
                 {% endif %}
                 <li class="nav-item dropdown">
                     <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-                       href=""
-                       role="button">
-                        ZFC Monitored Request
+                       href="" role="button" id="topA">
+                        Monitored Request
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item" href="{% url 'zfcEmployees' %}">Request Review</a>
+                            <a class="dropdown-item" href="{% url 'zfcEmployees' %}" id="navAnchor">Request Review</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{% url 'zfcPermitted'%}">Request Approved</a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="{% url 'zfcExpired' %}">Request Expired</a>
+                            <a class="dropdown-item" href="{% url 'zfcPermitted'%}" id="navAnchor">Request Approved</a>
                         </li>
 
                         <li>
-                            <a class="dropdown-item" href="{% url 'zfcDenied' %}">Request Denied</a>
+                            <a class="dropdown-item" href="{% url 'zfcExpired' %}" id="navAnchor">Request Expired</a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="{% url 'zfcDenied' %}" id="navAnchor">Request Denied</a>
                         </li>
 
                     </ul>
@@ -47,55 +47,75 @@
                 <!-- Manager Page -->
                 {% if user.is_staff %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Manager_Link</a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                           role="button" aria-expanded="false" id="topA">
+                            Manager_Link
+                        </a>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="{% url 'managerPage' %}">Manager Dashboard</a></li>
+                          <li class="navList"><a class="dropdown-item" href="{% url 'managerPage' %}" id="navAnchor">Manager Dashboard</a></li>
 
                           <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="{% url 'mDeptList' %}">Listed Department</a></li>
-                          <li><a class="dropdown-item" href="{% url 'mDeptForm' %}"> > Add Department</a></li>
+                          <li><a class="dropdown-item" href="{% url 'mDeptList' %}" id="navAnchor">Listed Department</a></li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'mDeptForm' %}" id="navAnchor">
+                                <strong> > </strong>
+                                Add Department
+                                </a>
+                            </li>
 
                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'mUserList' %}"> Listed User</a></li>
-                          <li><a class="dropdown-item" href="{% url 'vmsRegister' %}"> > Add User</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mUserList' %}" id="navAnchor"> Listed User</a></li>
+                          <li><a class="dropdown-item" href="{% url 'vmsRegister' %}" id="navAnchor"><strong> > </strong> Add User</a></li>
 
                              <li><hr class="dropdown-divider"></li>
                         </ul>
                      </li>
+
+                <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                           role="button" aria-expanded="false" id="topA">
+                            File Download
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li class="navList"><a class="dropdown-item" href="{% url 'pdfListView' %}" id="navAnchor">PDF List</a></li>
+
+                        </ul>
+                     </li>
+
                {% endif %}
 
 
             {% else %}<!-- If user not login this is the navbar they can see -->
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'vHome' %}">VR Form</a>
+                <a class="nav-link" href="{% url 'vHome' %}" id="topA">VR_Form</a>
             </li>
             <li class="nav-item dropdown">
                 <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
                    href="{% url 'monitoringViews'%}"
-                   role="button">
+                   role="button" id="topA">
                     Monitored Request
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="dropdown-item" href="{% url 'monitoringViews'%}">Request Review</a>
+                        <a class="dropdown-item" href="{% url 'monitoringViews'%}" id="navAnchor">Request Review</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="{% url 'permitted'%}">Request Approved</a>
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item" href="{% url 'expired' %}">Request Expired</a>
+                        <a class="dropdown-item" href="{% url 'permitted'%}" id="navAnchor">Request Approved</a>
                     </li>
 
                     <li>
-                        <a class="dropdown-item" href="{% url 'denied' %}">Request Denied</a>
+                        <a class="dropdown-item" href="{% url 'expired' %}" id="navAnchor">Request Expired</a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="{% url 'denied' %}" id="navAnchor">Request Denied</a>
                     </li>
 
                 </ul>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'vmsLogin' %}">Log In</a>
+                <a class="nav-link" href="{% url 'vmsLogin' %}" id="topA">Log In</a>
             </li>
 
             {% endif %}
@@ -109,24 +129,24 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
                         <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                           role="button">
+                           role="button" id="topA">
                             {{user}}
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="">Profile(soon)</a>
+                                <a class="dropdown-item" href="" id="navAnchor">Profile(soon)</a>
                             </li>
 
                              <li>
-                                <a class="dropdown-item" href="">Change Password(soon)</a>
+                                <a class="dropdown-item" href="" id="navAnchor">Change Password(soon)</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{% url 'vmsLogout' %}">Sign Out</a>
+                                <a class="dropdown-item" href="{% url 'vmsLogout' %}" id="navAnchor">Sign Out</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="#" id="navAnchor">Something else here</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -2,8 +2,9 @@ from django.urls import path
 from zfcemployee.views import (zfcEmployees, VisitorRequestFormEditView, zfcPermitted, zfcExpired, zfcDenied,
                                zfcPermittedDetails, zfcProfile)
 
+
 urlpatterns = [
-    path('', zfcEmployees, name='zfcEmployees'),
+    path('ticket_list/', zfcEmployees, name='zfcEmployees'),
     path('zfcPermitted/', zfcPermitted, name='zfcPermitted'),
     path('zfcExpired/', zfcExpired, name='zfcExpired'),
     path('zfcDenied/', zfcDenied, name='zfcDenied'),
@@ -15,3 +16,4 @@ urlpatterns = [
     path('zfcPermittedDetails/<str:pk>/', zfcPermittedDetails, name='zfcPermittedDetails'),
 
 ]
+

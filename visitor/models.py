@@ -20,8 +20,7 @@ class RequestForm(models.Model):
 
     dateFrom = models.DateField(auto_now=False, verbose_name='Start Date')
     dateTo = models.DateField(auto_now=False, verbose_name='End Date')
-    contactPerson = models.ForeignKey(EmpName, on_delete=models.CASCADE, verbose_name='ZFC Employee', null=True,
-                                      blank=True)
+    contactPerson = models.ForeignKey(EmpName, on_delete=models.CASCADE, verbose_name='ZFC Employee')
 
     appointment = models.BooleanField(editable=True)
     noAppointment = models.BooleanField(editable=True)
@@ -56,6 +55,9 @@ class RequestForm(models.Model):
     comment = models.TextField(null=True, blank=True, verbose_name='comment here')
     updated = models.DateField(auto_now=True)
     created = models.DateField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-created',)
 
     def __str__(self):
         return f'{self.id} - {self.approved}: {self.comment}'

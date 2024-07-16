@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.db.models.functions import Now
 from visitor.forms import VisitorRequestForm
 from django.shortcuts import render, redirect
+from django.contrib import messages
 
 from visitor.models import RequestForm
 
@@ -17,6 +18,7 @@ def vHome(request):
         if form.is_valid():
             form.save()
             return redirect('monitoringViews')
+
     else:
         form = VisitorRequestForm
         if 'submitted' in request.GET:

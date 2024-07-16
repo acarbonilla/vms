@@ -1,42 +1,30 @@
 {% extends 'core/base.html' %}
 {% load widget_tweaks %}
 {% block content %}
-<style>
-    .signUpBorder{
-   border-radius: 15px 50px;
-     padding: 20px;
-      box-shadow: 10px 10px 5px lightblue;
-  }
 
-  .title{
-
-color: white;
-text-shadow: 2px 2px 4px #000000;
-  }
-</style>
 <div class="container">
     <div class="row p-2 mb-3">
         <div class="col-sm-3">
         </div>
 
-        <div class="col-sm-5 border m-2 p-4 signUpBorder">
-            <h2 class="text-center title">Sign Up!</h2>
+        <div class="col-sm-5 border m-2 p-4 formBorder">
+            <h2 class="text-center formTitle">Sign Up!</h2>
             <form action="{% url 'vmsRegister' %}" method="POST">
                 {% csrf_token %}
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon3">Firstname:</span>
-                    {% render_field form.first_name class="form-control" placeholder="Firstname"%}
+                    {% render_field form.first_name class="form-control"%}
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon3">Lastname:</span>
-                    {% render_field form.last_name class="form-control" placeholder="lastname"%}
+                    {% render_field form.last_name class="form-control"%}
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon3">Username:</span>
-                    {% render_field form.username class="form-control" placeholder="Username"%}
+                    {% render_field form.username class="form-control"%}
                 </div>
 
                 <div class="input-group mb-3">
@@ -48,10 +36,10 @@ text-shadow: 2px 2px 4px #000000;
                     <span class="input-group-text" id="basic-addon3">Password Confirmation:</span>
                     {% render_field form.password2 class="form-control" type="password"%}
                 </div>
-                <a class="btn btn-primary" href="
+                <a class="btn btn-primary formSubmitButton" href="
                      {{request.META.HTTP_REFERER}}" role="button">Cancel
                  </a>
-                <input aria-controls="offcanvasTop" class="btn btn-primary"
+                <input aria-controls="offcanvasTop" class="btn btn-primary formSubmitButton"
                        data-bs-target="#offcanvasTop" data-bs-toggle="offcanvas"
                        type="submit" value="Submit"/>
 

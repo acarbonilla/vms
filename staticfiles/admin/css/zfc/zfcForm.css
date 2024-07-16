@@ -1,0 +1,72 @@
+.formBorder{
+     border-radius: 15px 50px;
+     padding: 20px;
+     box-shadow: 10px 10px 5px lightblue;
+    }
+
+ .formTitle{
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+    }
+
+ .formSubmitButton{
+ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+/* ZFC Emp Details */
+#sub{
+    background-color: #023020;
+    font-size: 17px;
+    padding-top: 3px;
+    color: #F0E68C;
+    text-shadow: 2px 2px 4px #000000;
+    border-radius: 15px 0px 0px 15px;
+    text-align: center;
+
+    }
+
+.row{
+    margin: 5px;
+    padding: 3px;
+
+    }
+
+.details{
+    background-color: #F0E68C;
+    font-size: 20px;
+    color: #023020;
+    text-shadow: 2px 2px 4px #000000;
+    padding-top: 3px;
+    border-radius: 0px 15px 30px 0px;
+    box-shadow: 10px 10px 5px lightblue;
+}
+
+/* ZFC Navigation Bar */
+
+#navAnchor:hover{
+background-color: #023020;
+color: #F0E68C;
+margin-left: 2px;
+font-size: 18px;
+font-weight: bolder;
+border-radius: 30px 30px;
+text-align: justify;
+}
+
+#topA:hover{
+color: #F0E68C;
+margin-left: 2px;
+font-size: 18px;
+font-weight: bolder;
+}
+
+/* Footer SEction */
+.footerSection{
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+  background-color: #023020;
+    color: #F0E68C;
+   text-align: center;
+}

@@ -1,82 +1,59 @@
 {% extends 'core/base.html' %}
-{% load widget_tweaks %}
 {% block content %}
-<style>
-    #sub{
-        background-color: #7EffE3;
-        }
-    #textSize{
-        font-size: 20px;
 
-        }
-    .row{
-        margin: 5px;
-        padding: 3px;
-        }
-  .detailsComp{
-    color: white;
-     text-shadow: 2px 2px 4px #000000;
-    }
- .detailsBorder{
-     border-radius: 15px 50px;
-     padding: 20px;
-     box-shadow: 4px 20px 40px lightblue;
-    }
-</style>
-
-<div class="container border detailsBorder">
-    <h2 class="text-center detailsComp mb-2">Form Details</h2>
+<div class="container border formBorder">
+    <h2 class="text-center formTitle mb-2">Form Details</h2>
 
     <div class="row">
-        <div class="col-sm-5 " id="textSize">
-            <div class="row border">
+        <div class="col-sm-5">
+            <div class="row">
                 <div class="col-sm-5" id="sub">
                     <p>Request ID:</p>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6 details">
                     <p>{{zfcPD.id}}</p>
                 </div>
             </div>
 
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5" id="sub">
                     <p>Fullname:</p>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6 details">
                     <p>{{zfcPD.fullName}}</p>
                 </div>
             </div>
 
 
-            <div class="row border">
-                <div class="col-sm-5 border" id="sub">
+            <div class="row">
+                <div class="col-sm-5" id="sub">
                     <p>Company Name:</p>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6 details">
                     <p>{{zfcPD.companyName}}</p>
                 </div>
             </div>
 
 
-            <div class="row border">
-                <div class="col-sm-5 border" id="sub">
+            <div class="row">
+                <div class="col-sm-5" id="sub">
                     <p>Company Address:</p>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6 details">
                     <p>{{zfcPD.companyAddress}}</p>
                 </div>
             </div>
 
-            <div class="row border">
-                <div class="col-sm-5 border" id="sub">
+            <div class="row">
+                <div class="col-sm-5 " id="sub">
                     <p>Reason Of Request:</p>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6 details">
                     <p>{{zfcPD.reasonOfRequest}}</p>
                 </div>
             </div>
@@ -89,45 +66,45 @@
         </div>
 
         <div class="col-sm-5 " id="textSize">
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5" id="sub">
                     <p>Start From:</p>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6 details">
                     <p>{{zfcPD.dateFrom}}</p>
                 </div>
             </div>
 
 
-            <div class="row border">
-                <div class="col-sm-5 border" id="sub">
-                    <p>To</p>
+            <div class="row">
+                <div class="col-sm-5" id="sub">
+                    <p>To:</p>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6 details">
                     <p>{{zfcPD.dateTo}}</p>
                 </div>
             </div>
 
 
-            <div class="row border">
-                <div class="col-sm-5 border" id="sub">
+            <div class="row">
+                <div class="col-sm-5" id="sub">
                     <p>Contact Person:</p>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6 details">
                     <p>{{zfcPD.contactPerson}}</p>
                 </div>
             </div>
 
             {% if zfcPD.appointment%}
-            <div class="row border">
-                <div class="col-sm-5 border" id="sub">
+            <div class="row">
+                <div class="col-sm-5" id="sub">
                     <p>Conformed with Appointment:</p>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6 details">
                     <span style='font-size:50px;'>&#9745;</span>
                 </div>
             </div>
@@ -136,12 +113,12 @@
             {% endif %}
 
             {% if zfcPD.noAppointment%}
-            <div class="row border">
-                <div class="col-sm-5 border" id="sub">
+            <div class="row">
+                <div class="col-sm-5" id="sub">
                     <p>No Appointment:</p>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6 details">
                     <span style='font-size:50px;'>&#9745;</span>
                 </div>
             </div>
@@ -149,12 +126,12 @@
 
             {% endif %}
 
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5" id="sub">
                     <p>Security Personnel</p>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6 details">
                     <p>{{zfcPD.guard}}</p>
                 </div>
             </div>
@@ -168,32 +145,32 @@
 
     <div class="row">
         <div class="col-sm-5 " id="textSize">
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5" id="sub">
                     <p>Last Place Visited:</p>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6 details">
                     <p>{{zfcPD.placesVisited}}</p>
                 </div>
             </div>
 
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5" id="sub">
                     <p>Last Countries Visited:</p>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6 details">
                     <p>{{zfcPD.country}}</p>
                 </div>
             </div>
 
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5" id="sub">
                     <p>Body Temperature:</p>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6 details ">
                     {% if zfcPD.temp >= 38 %}
                         {{zfcPD.temp}} &#8451 <i class="fa fa-warning" style="font-size:60px;color:red"></i>
                     {% else %}
@@ -202,7 +179,7 @@
                 </div>
             </div>
             {% if zfcPD.agreement %}
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5" id="sub">
                     <p>Declaration Of Agreement</p>
                 </div>
@@ -212,7 +189,7 @@
                 </div>
             </div>
             {% else %}
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5 bg-danger" id="sub">
                     <p class="text-light">Declaration Of Agreement</p>
                 </div>
@@ -224,12 +201,12 @@
             {% endif %}
 
 
-                <div class="row border">
-                <div class="col-sm-5 border" id="sub">
+                <div class="row">
+                <div class="col-sm-5" id="sub">
                     <p>Comment</p>
                 </div>
 
-                <div class="col-sm-6 bg-info text-white">
+                <div class="col-sm-6 details">
                     <p>{{zfcPD.comment}}</p>
                 </div>
             </div>
@@ -244,7 +221,7 @@
 
         <div class="col-sm-5 " id="textSize">
             {% if zfcPD.bdv %}
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5 bg-danger" id="sub">
                     <p class="text-light">Bowel Disorder, diarrhea, and vomiting</p>
                 </div>
@@ -259,7 +236,7 @@
 
             <!-- This is for sore throat -->
             {% if zfcPD.soreThroat %}
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5 bg-danger" id="sub">
                     <p class="text-light">Sore throat with fever</p>
                 </div>
@@ -275,7 +252,7 @@
 
             <!-- This is for cold -->
             {% if zfcPD.cold %}
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5 bg-danger" id="sub">
                     <p class="text-light">Colds, cough, stomach pain...</p>
                 </div>
@@ -289,7 +266,7 @@
             {% endif %}
             <!-- This is for mumps -->
             {% if zfcPD.mumps %}
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5 bg-danger" id="sub">
                     <p class="text-light">Mumps, measles, chickenpox</p>
                 </div>
@@ -303,8 +280,8 @@
             {% endif %}
             <!-- This is for skin-->
             {% if zfcPD.skin %}
-            <div class="row border">
-                <div class="col-sm-5 bg-danger" id="sub">
+            <div class="row">
+                <div class="col-sm-5 bg-danger details" id="sub">
                     <p class="text-light">Skin Infections of the hands, arms, or face.</p>
                 </div>
 
@@ -317,7 +294,7 @@
             {% endif %}
             <!-- This is for styes -->
             {% if zfcPD.styes %}
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5 bg-danger" id="sub">
                     <p class="text-light">Sytes, discharge from eye/ear/....</p>
                 </div>
@@ -332,8 +309,8 @@
 
             <!-- This is for jaundice -->
             {% if zfcPD.jaundice %}
-            <div class="row border">
-                <div class="col-sm-5 bg-danger" id="sub">
+            <div class="row">
+                <div class="col-sm-5 bg-danger details" id="sub">
                     <p class="text-light">Yellowing of Skin/Jaundice</p>
                 </div>
 
@@ -347,7 +324,7 @@
 
             <!-- This is for cuts-->
             {% if zfcPD.cuts %}
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5 bg-danger" id="sub">
                     <p class="text-light">Visibly Infected skin lesion</p>
                 </div>
@@ -362,7 +339,7 @@
 
             <!-- This is for infection -->
             {% if zfcPD.infection %}
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5 bg-danger" id="sub">
                     <p class="text-light">A recurring infection of skin....</p>
                 </div>
@@ -377,7 +354,7 @@
 
             <!-- This is for typhoid -->
             {% if zfcPD.typhoid %}
-            <div class="row border">
+            <div class="row">
                 <div class="col-sm-5 bg-danger" id="sub">
                     <p class="text-light">Typhoid Fever.</p>
                 </div>
@@ -390,7 +367,7 @@
 
             {% endif %}
 
-            <a class="btn btn-primary" href="
+            <a class="btn btn-primary formSubmitButton" href="
             {{request.META.HTTP_REFERER}}" role="button">Go Back
             </a>
 

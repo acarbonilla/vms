@@ -1,24 +1,14 @@
 {% extends 'core/base.html' %}
+{% load static %}
 {% block content %}
 <style>
-    .loginBorder{
-     border-radius: 15px 50px;
-       padding: 20px;
-        box-shadow: 10px 10px 5px lightblue;
-    }
 
-    .loginComp{
 
- color: white;
-  text-shadow: 2px 2px 4px #000000;
-    }
 
-    .loginSubmitButton{
 
- box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
 
-    }
+
+
 </style>
 
 <div class="container">
@@ -26,8 +16,8 @@
         <div class="col-sm-4">
         </div>
 
-        <div class="col-sm-4 m-3 p-4 loginBorder">
-            <h1 class="text-center p-3 loginComp">ZFC Login</h1>
+        <div class="col-sm-4 m-3 p-4 formBorder">
+            <h1 class="text-center p-3 formTitle">ZFC Login</h1>
             <form action="" method="POST">
                 {%csrf_token%}
                 <div class="mb-3 p-2">
@@ -37,7 +27,7 @@
                 <div class="mb-3 p-2">
                     <input class="form-control" name="password" placeholder="Password" type="password">
                 </div>
-                <button class="primaryAction mt-2 mb-3 btn btn-primary text-white loginSubmitButton" type="submit">Sign
+                <button class="primaryAction mt-2 mb-3 btn btn-primary text-white formSubmitButton" type="submit">Sign
                     In
                 </button> &nbsp; &nbsp;
                 <br/>

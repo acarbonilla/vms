@@ -1,34 +1,9 @@
 {% extends 'core/base.html' %}
 {% load widget_tweaks %}
 {% block content %}
-<style>
-.form-check{
-   height:35px;
-   width: 40px;
 
-   }
-
- #hideme{
-    background-color:orange;
-    display:none;
-    }
- .title{
-    color: white;
-     text-shadow: 2px 2px 4px #000000;
-    }
- .formBorder{
-     border-radius: 15px 50px;
-     padding: 20px;
-     box-shadow: 4px 20px 20px gray;
-    }
- .input-group{
-     padding: 5px;
-     box-shadow: 4px 4px 20px #cfcfcf;
-    }
-
-</style>
-<div class="container border m-2 formBorder mb-3">
-    <h1 class="text-center title mb-3">ZFC PLANT VISITOR REGISTRATION FORM</h1>
+<div class="container border formBorder mb-5">
+    <h1 class="text-center formTitle mb-3">ZFC PLANT VISITOR REGISTRATION FORM</h1>
         <p style="font-style: italic;">Please answer this form completely and eligibly.</p>
     <div class="row p-2 mb-3">
         <div class="col-sm-5">
@@ -36,23 +11,23 @@
                 {% csrf_token %}
 
              <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon3">Fullname</span>
-                    {% render_field form.fullName class="form-control" placeholder="Complete Name"%}
+                    <span class="input-group-text" id="basic-addon3">Fullname:</span>
+                    {% render_field form.fullName class="form-control vInput"%}
              </div>
 
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon3">Company Name</span>
-                    {% render_field form.companyName class="form-control" placeholder="Complete Company Name"%}
+                    <span class="input-group-text" id="basic-addon3">Company Name:</span>
+                    {% render_field form.companyName class="form-control vInput"%}
                 </div>
 
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon3">Company Address</span>
-                    {% render_field form.companyAddress class="form-control" placeholder="Complete Company Address"%}
+                    <span class="input-group-text" id="basic-addon3">Company Address:</span>
+                    {% render_field form.companyAddress class="form-control vInput"%}
                 </div>
 
                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon3">Reason of Request</span>
-                 {% render_field form.reasonOfRequest class="form-control" placeholder="Reason for the visit/Business"%}
+                    <span class="input-group-text" id="basic-addon3">Reason of Request:</span>
+                 {% render_field form.reasonOfRequest class="form-control vInput" placeholder="Reason for the visit/Business"%}
                 </div>
         </div>
         <div class="col-sm-1"> </div>
@@ -60,23 +35,23 @@
             <h5>Date(s) of Visit:</h5>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon3">From:</span>
-                {% render_field form.dateFrom class="form-control" type="date"%}
+                {% render_field form.dateFrom class="form-control vInput" type="date"%}
             </div>
 
             <div class="input-group mb-3">
-                <span class="input-group-text" >To</span>
-                {% render_field form.dateTo class="form-control" type="date"%}
+                <span class="input-group-text" >To:</span>
+                {% render_field form.dateTo class="form-control vInput" type="date"%}
             </div>
 
              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon3">Contact Person</span>
-                {% render_field form.contactPerson class="form-select"%}
+                <span class="input-group-text" id="basic-addon3">Contact Person:</span>
+                {% render_field form.contactPerson class="form-select vInput"%}
             </div>
 
            <div class="input-group mb-3">
                     <div class="row">
                             <div class="col-sm-9">
-                                  <span class="input-group-text" id="basic-addon3">Conformed with Appointment</span>
+                                  <span class="input-group-text" id="basic-addon3">Conformed with Appointment:</span>
                             </div>
 
                             <div class="col-sm-3">
@@ -86,7 +61,7 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                              {% render_field form.appointment class="form-check"%}
+                                              {% render_field form.appointment class="form-check vCheck"%}
                                         </div>
                                     </div>
                                 </div>
@@ -94,15 +69,15 @@
                     </div>
            </div>
 
-            <div class="input-group mb-3 border">
+            <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon3">No appointment but access has been authorize:</span>
                 &nbsp;  &nbsp;
-                {% render_field form.noAppointment class="form-check"%}
+                {% render_field form.noAppointment class="form-check vCheck"%}
             </div>
 
              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon3">Guard in Charge</span>
-                {% render_field form.guard class="form-control" placeholder="Fullname of Guard in Charge" %}
+                <span class="input-group-text" id="basic-addon3">Guard in Charge:</span>
+                {% render_field form.guard class="form-control vInput" placeholder="Fullname of Guard in Charge" %}
             </div>
         </div>
     </div> <!-- End of Upper Row -->
@@ -112,7 +87,7 @@
                  <p>1. Last place visited(indicate town/city and province) prior this visit at ZFC:</p>
                  <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon3">Last Place Visited</span>
-                    {% render_field form.placesVisited class="form-control" placeholder="ex. Manila, Davao, etc." %}
+                    {% render_field form.placesVisited class="form-control vInput" placeholder="ex. Manila, Davao, etc." %}
                 </div>
 
                 <p>2. At present, or in the last seven days, are you suffering from:</p>
@@ -121,7 +96,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-9">
-                                <span class="input-group-text" id="basic-addon3">
+                                <span class="input-group-text vInput" id="basic-addon3">
                                     2.1 Bowel disorder, diarrhea and /or vomiting?
                                 </span>
                             </div>
@@ -133,7 +108,7 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                             {% render_field form.bdv class="form-check"%}
+                                             {% render_field form.bdv class="form-check vCheck"%}
                                         </div>
                                     </div>
                                 </div>
@@ -144,12 +119,11 @@
                     </div>
                 </div>
 
-
                <div class="input-group mb-3 ">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-9">
-                                <span class="input-group-text" id="basic-addon3">
+                                <span class="input-group-text vInput" id="basic-addon3">
                         2.2 Sore Throat with fever?
                                 </span>
                             </div>
@@ -161,7 +135,7 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                             {% render_field form.soreThroat class="form-check"%}
+                                             {% render_field form.soreThroat class="form-check vCheck"%}
                                         </div>
                                     </div>
                                 </div>
@@ -176,7 +150,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-9">
-                                <span class="input-group-text" id="basic-addon3">
+                                <span class="input-group-text vInput" id="basic-addon3">
                       2.3 Colds, cough, stomach pain, nausea or flu/fever?
                                 </span>
                             </div>
@@ -188,7 +162,7 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                             {% render_field form.cold class="form-check"%}
+                                             {% render_field form.cold class="form-check vCheck"%}
                                         </div>
                                     </div>
                                 </div>
@@ -203,7 +177,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-9">
-                                <span class="input-group-text" id="basic-addon3">
+                                <span class="input-group-text vInput" id="basic-addon3">
                                  2.4  Mumps, measles, chickenpox?
                                 </span>
                             </div>
@@ -215,14 +189,13 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                              {% render_field form.mumps class="form-check"%}
+                                              {% render_field form.mumps class="form-check vCheck"%}
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-
                     </div>
                </div>
 
@@ -230,7 +203,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-9">
-                                <span class="input-group-text" id="basic-addon3">
+                                <span class="input-group-text vInput" id="basic-addon3">
                       			2.5 Skin infections of the hands, arms or face?
                     		</span>
                             </div>
@@ -242,7 +215,7 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                              {% render_field form.skin class="form-check"%}
+                                              {% render_field form.skin class="form-check vCheck"%}
                                         </div>
                                     </div>
                                 </div>
@@ -257,7 +230,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-9">
-                                <span class="input-group-text" id="basic-addon3">
+                                <span class="input-group-text vInput" id="basic-addon3">
                    			 2.6 Styes,discharge from eye/ear/gums/nose/mouth...
                     		</span>
                             </div>
@@ -269,7 +242,7 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                              {% render_field form.styes class="form-check"%}
+                                              {% render_field form.styes class="form-check vCheck"%}
                                         </div>
                                     </div>
                                 </div>
@@ -285,7 +258,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-9">
-                                 <span class="input-group-text" id="basic-addon3">
+                                 <span class="input-group-text vInput" id="basic-addon3">
                     			 2.7   Yellowing of skin/ Jaundice
                     		 </span>
                             </div>
@@ -297,7 +270,7 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                              {% render_field form.jaundice class="form-check"%}
+                                              {% render_field form.jaundice class="form-check vCheck"%}
                                         </div>
                                     </div>
                                 </div>
@@ -312,7 +285,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-9">
-                                 <span class="input-group-text" id="basic-addon3">
+                                 <span class="input-group-text vInput" id="basic-addon3">
                      			2.9   A recurring infection of the skin, ear or throat?
                    		 </span>
                             </div>
@@ -324,7 +297,7 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                              {% render_field form.infection class="form-check"%}
+                                              {% render_field form.infection class="form-check vCheck"%}
                                         </div>
                                     </div>
                                 </div>
@@ -345,7 +318,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-9">
-                                  <span class="input-group-text" id="basic-addon3">
+                                  <span class="input-group-text vInput" id="basic-addon3">
                      			Typhoid fever?
                   		  </span>
                             </div>
@@ -357,7 +330,7 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                              {% render_field form.typhoid class="form-check"%}
+                                              {% render_field form.typhoid class="form-check vCheck"%}
                                         </div>
                                     </div>
                                 </div>
@@ -369,13 +342,13 @@
                 </div>
                 <p> 4. Countries visited in the last 6 weeks:</p>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon3"></span>
-                    {% render_field form.country class="form-control" placeholder="e.g. USA, Singapore, etc. / NA if NONE."%}
+
+                    {% render_field form.country class="form-control vInput" placeholder="e.g. USA, Singapore, etc. / NA if NONE."%}
                 </div>
 
                  <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon3">Body Temperature</span>
-                    {% render_field form.temp class="form-control" placeholder=""%}
+                    {% render_field form.temp class="form-control vInput" placeholder="No Decimal Point"%}
                  </div>
 
                  <!-- This is for the Declaration of Understanding -->
@@ -397,13 +370,14 @@
                   <div class="input-group mb-3 mt-2">
                     <span class="input-group-text" id="basic-addon3" aria-required="true">Agreement</span>
                     &nbsp; &nbsp;
-                    {% render_field form.agreement class="form-check"%}
+                    {% render_field form.agreement class="form-check vCheck"%}
                          &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
                      <span class="input-group-text" >Date Signed</span>
 
-                    {% render_field form.dateSigned class="form-control" type="date"%}
+                    {% render_field form.dateSigned class="form-control vInput" type="date"%}
                  </div>
-                <input aria-controls="offcanvasTop" class="btn btn-primary"
+
+                <input aria-controls="offcanvasTop" class="btn btn-primary formSubmitButton"
                        data-bs-target="#offcanvasTop" data-bs-toggle="offcanvas"
                        type="submit" value="Submit"/>
                  </form>
@@ -413,6 +387,5 @@
     </div>
 
 </div>
-
 
 {% endblock %}
