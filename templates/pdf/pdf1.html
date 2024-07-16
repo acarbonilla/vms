@@ -3,8 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <title>{{title}}</title>
+<style>
+    .th_class{
+    text-align: left;
+    font-size: 15px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #cfcfcf;
+    width:30%;
+    }
+
+     .td_class{
+    text-align: left;
+    font-size: 15px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+
+    }
+table {
+  width: 100%;
+
+}
+</style>
+
+
 </head>
 <body>
-    {{pdf_details}}
+<h3>Approved By: {{pdf_details.contactPerson}} on {{pdf_details.updated}}</h3>
+   <table>
+       <tr>
+           <th class="th_class">ID#:</th>
+           <td class="td_class">{{pdf_details.id}}</td>
+
+       </tr>
+         <tr>
+           <th class="th_class">Fullname:</th>
+           <td class="td_class">{{pdf_details.fullName}}</td>
+         </tr>
+
+         <tr>
+           <th class="th_class">Company Name:</th>
+           <td class="td_class">{{pdf_details.companyName}}</td>
+         </tr>
+
+        <tr>
+           <th class="th_class">Company Address:</th>
+           <td class="td_class">{{pdf_details.companyAddress}}</td>
+         </tr>
+
+       <tr>
+           <th class="th_class">Reason Of Request:</th>
+           <td class="td_class">{{pdf_details.reasonOfRequest}}</td>
+         </tr>
+
+        <tr>
+           <th class="th_class">Date From:</th>
+           <td class="td_class">{{pdf_details.dateFrom}}</td>
+         </tr>
+
+       <tr>
+           <th class="th_class">To:</th>
+           <td class="td_class">{{pdf_details.dateTo}}</td>
+         </tr>
+
+        {% if pdf_details.appointment %}
+         <tr>
+           <th class="th_class">Appointment?</th>
+           <td class="td_class">{{pdf_details.appointment}}</td>
+         </tr>
+       {%else%}
+        <tr>
+           <th class="th_class">No Appointment:</th>
+           <td class="td_class">{{pdf_details.noAppointment}}</td>
+         </tr>
+       {% endif %}
+         <tr>
+           <th class="th_class">SG Personnel:</th>
+           <td class="td_class">{{pdf_details.guard}}</td>
+         </tr>
+
+        <tr>
+           <th class="th_class">Places Visited:</th>
+           <td class="td_class">{{pdf_details.placesVisited}}</td>
+         </tr>
+
+       {% if pdf_details.bdv %}
+           <tr>
+               <th class="th_class">Bowel disorder, diarrhea and /or vomiting?</th>
+               <td class="td_class">{{pdf_details.bdv}}</td>
+           </tr>
+
+       {% endif %}
+
+       {% if pdf_details.soreThroat %}
+           <tr>
+               <th class="th_class"> Sore Throat with fever?</th>
+               <td class="td_class">{{pdf_details.soreThroat}}</td>
+           </tr>
+
+       {% endif %}
+
+       {% if pdf_details.cold %}
+           <tr>
+               <th class="th_class"> Colds, cough, stomach pain, nausea or flu/fever?</th>
+               <td class="td_class">{{pdf_details.cold}}</td>
+           </tr>
+
+
+       {% endif %}
+
+         {% if pdf_details.mumps %}
+           <tr>
+               <th class="th_class"> Mumps, measles, chickenpox?</th>
+               <td class="td_class">{{pdf_details.mumps}}</td>
+           </tr>
+
+        {% endif %}
+
+         {% if pdf_details.skin %}
+           <tr>
+               <th class="th_class"> Skin infections of the hands, arms or face?</th>
+               <td class="td_class">{{pdf_details.skin}}</td>
+           </tr>
+
+        {% endif %}
+
+        {% if pdf_details.styes %}
+           <tr>
+               <th class="th_class"> Styes,discharge from eye/ear/gums/nose/mouth?</th>
+               <td class="td_class">{{pdf_details.styes}}</td>
+           </tr>
+
+        {% endif %}
+
+        {% if pdf_details.jaundice %}
+           <tr>
+               <th class="th_class"> Yellowing of skin/ Jaundice?</th>
+               <td class="td_class">{{pdf_details.jaundice}}</td>
+           </tr>
+
+        {% endif %}
+
+         {% if pdf_details.cuts %}
+           <tr>
+               <th class="th_class">Visibly Infected skin lesion?</th>
+               <td class="td_class">{{pdf_details.cuts}}</td>
+           </tr>
+
+        {% endif %}
+
+        {% if pdf_details.infection %}
+           <tr>
+               <th class="th_class"> A recurring infection of the skin, ear or throat?</th>
+               <td class="td_class">{{pdf_details.infection}}</td>
+           </tr>
+
+        {% endif %}
+
+         {% if pdf_details.typhoid %}
+           <tr>
+               <th class="th_class"> Have you ever had typhoid fever?</th>
+               <td class="td_class">{{pdf_details.typhoid}}</td>
+           </tr>
+
+        {% endif %}
+
+
+        <tr>
+           <th class="th_class">Countries visited in the last 6 weeks:</th>
+           <td class="td_class">{{pdf_details.country}}</td>
+
+       </tr>
+
+       {% if pdf_details.temp > 37 %}
+           <tr>
+               <th class="th_class">Temparature:</th>
+               <td class="td_class">Having Fever: {{pdf_details.temp}} dc</td>
+           </tr>
+       {% else %}
+         <tr>
+           <th class="th_class">Temperature:</th>
+           <td class="td_class">{{pdf_details.temp}}</td>
+         </tr>
+       {% endif %}
+        <tr>
+           <th class="th_class">Agreement:</th>
+           <td class="td_class">{{pdf_details.agreement}}</td>
+
+       </tr>
+
+         <tr>
+           <th class="th_class">Date Signed:</th>
+           <td class="td_class">{{pdf_details.dateSigned}}</td>
+
+       </tr>
+   </table>
 </body>
 </html>
