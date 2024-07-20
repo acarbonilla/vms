@@ -20,8 +20,8 @@ class EmpName(models.Model):
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
-
-
+    def __str__(self):
+        return f'{self.member.first_name} {self.member.last_name}'
 
 
 

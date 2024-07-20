@@ -60,4 +60,4 @@ class RequestForm(models.Model):
         ordering = ('-created',)
 
     def __str__(self):
-        return f'{self.id} - {self.approved}: {self.comment}'
+        return f'{self.id} - {self.approved}: {self.comment}/ {self.contactPerson.member.username}'

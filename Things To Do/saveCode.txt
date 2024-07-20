@@ -2,48 +2,266 @@ It will download all pdf files
     source: https://www.youtube.com/watch?v=1x_ACMFzGYM
     requirement: pip install reportlab
 _______________________
+# Manager App, it will output last 30 days of transaction
+def managerPage(request):
+    one_week_ago = datetime.today() - timedelta(days=30)
+    requestCountPermitted = RequestForm.objects.filter(approved="Permitted", created__gte=one_week_ago).count()
+    requestCountDenied = RequestForm.objects.filter(approved="Denied", created__gte=one_week_ago).count()
+    requestCountPending = RequestForm.objects.filter(approved="Review", created__gte=one_week_ago).count()
+    # counting all request within 30 days
+    requestCount = requestCountPermitted + requestCountDenied + requestCountPending
 
-# This is for experimentation for pdf download
-# @login_required(login_url='vmsLogin')
-def render_to_pdf(template_src, context_dict={}):
-    template = get_template(template_src)
-    html = template.render(context_dict)
-    result = BytesIO()
-    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
-    if not pdf.err:
-        return HttpResponse(result.getvalue(), content_type='application/pdf')
-    return None
+    # This is for who are active, login, and others under the User auth
+    one_day = datetime.today() - timedelta(days=1)
+    userLogging = User.objects.filter(last_login__gte=one_day, is_superuser=False)
+    context = {'title': 'Manager', 'requestCount': requestCount, 'requestCountPermitted': requestCountPermitted,
+               'requestCountDenied': requestCountDenied, 'requestCountPending': requestCountPending,
+               'userLogging': userLogging}
+    return render(request, 'manager/managerPage.html', context)
+
+    ----------------------------------------------
+    Entire HTML from managerPage.html
+    source: https://www.chartjs.org/docs/latest/charts/bar.html
+    {% extends 'core/base.html' %}
+{% block content %}
+<style>
+    .card1{
+    width: 15rem;
+    height: 15rem;
+    background-color: #C8D4D6;
+
+    }
+
+    .cardText{
+     height: 8rem;
+     text-align: center;
+     font-weight: bolder;
+     color: gray;
+     padding-top:1rem;
+     font-size: 4rem;
+    }
+
+    .cardBody{
+     background-color: #6C3BAA;
+     color: white;
+     text-align: center;
+    }
+</style>
+<div class="container">
+    <!-- Upper Row -->
+    <div class="row">
+        <div class="col-sm-2">
+          <div class="card card1">
+                <h1 class="cardText">{{requestCount}}</h1>
+               <div class="card-body cardBody">
+                  <h5 class="card-text">
+                      Visitor Request.
+
+                  </h5>
+                   <small class="text-danger pl-1">
+                          See List
+                      </small>
+               </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1">
+
+         </div>
+
+        <div class="col-sm-2">
+          <div class="card card1">
+                <h1 class="cardText">{{requestCountPermitted}}</h1>
+               <div class="card-body cardBody">
+                  <h5 class="card-text">
+                      Permitted Request.
+                  </h5>
+                    <small class="text-danger pl-1">
+                          See List
+                      </small>
+               </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1">
+
+         </div>
+
+        <div class="col-sm-2">
+          <div class="card card1">
+                <h1 class="cardText">{{requestCountDenied}}</h1>
+               <div class="card-body cardBody">
+                  <h5 class="card-text">
+                      Denied Request.
+                  </h5>
+                    <small class="text-danger pl-1">
+                          See List
+                      </small>
+               </div>
+          </div>
+        </div>
+
+         <div class="col-sm-1">
+
+         </div>
+
+         <div class="col-sm-2">
+          <div class="card card1">
+                <h1 class="cardText">{{requestCountPending}}</h1>
+               <div class="card-body cardBody">
+                  <h5 class="card-text">
+                      Pending Request.
+                  </h5>
+                    <small class="text-danger pl-1">
+                          See List
+                      </small>
+               </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-sm-3">
+            <h5>Last Seen Active:</h5>
+            {% for online in userLogging %}
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="border-bottom: 1px gray solid;">
+                            {{online.first_name}} {{online.last_name}}  -
+                            {{online.last_login | timesince}}
+                    </li>
+                </ul>
+
+            {% endfor %}
+
+        </div>
 
 
-# Opens up page as PDF
-class ViewPDF(View):
-    viewPDF = RequestForm.objects.filter(approved="Permitted")
-    my_dict = list(viewPDF)
-    count = RequestForm.objects.filter(approved="Permitted").count()
 
-    # Get time
-    t = time.localtime()
-    current_time = time.strftime("%D - %H:%M:%S", t)
+         <div class="col-sm-3">
+            <h5 style="text-align: center;">Permitted Request:</h5>
+              <table class="table table-hover border">
+                    <thead>
+                    <tr>
 
-    context = {'my_dict': my_dict, 'count': count, 'current_time': current_time}
+                        <th scope="col" class="p-3" style="text-align:center;">Fullname</th>
+                        <th scope="col" class="p-3" style="text-align:center;">Total</th>
 
-    def get(self, request, *args, **kwargs):
-        pdf = render_to_pdf('pdf/pdf_template.html', self.context)
-        return HttpResponse(pdf, content_type='application/pdf')
+                    </tr>
+                    </thead>
+                    {% for ticket in employee %}
+                    <tbody>
+                    <tr>
+
+                        <td class="p-3" style="text-align:center;">{{ticket.contactPerson__member__first_name}}
+                            {{ticket.contactPerson__member__last_name}}
+                        </td>
+                        <td class="p-3" style="text-align:center;">
+                            {{ticket.requestID}}
+                        </td>
+
+                    </tr>
+                    </tbody>
+
+                    {% endfor %}
+
+                </table>
+        </div>
+
+         <div class="col-sm-3">
+            <h5 style="text-align: center;">Denied Request:</h5>
+              <table class="table table-hover border">
+                    <thead>
+                    <tr>
+
+                        <th scope="col" class="p-3" style="text-align:center;">Fullname</th>
+                        <th scope="col" class="p-3" style="text-align:center;">Total</th>
+
+                    </tr>
+                    </thead>
+                    {% for ticket in employeeDenied %}
+                    <tbody>
+                    <tr>
+
+                        <td class="p-3" style="text-align:center;">{{ticket.contactPerson__member__first_name}}
+                            {{ticket.contactPerson__member__last_name}}
+                        </td>
+                        <td class="p-3" style="text-align:center;">
+                            {{ticket.requestID}}
+                        </td>
+
+                    </tr>
+                    </tbody>
+
+                    {% endfor %}
+
+                </table>
+        </div>
+
+         <div class="col-sm-3">
+            <h5 style="text-align: center;">Pending Request:</h5>
+              <table class="table table-hover border">
+                    <thead>
+                    <tr>
+
+                        <th scope="col" class="p-3" style="text-align:center;">Fullname</th>
+                        <th scope="col" class="p-3" style="text-align:center;">Total</th>
+
+                    </tr>
+                    </thead>
+                    {% for ticket in employeeReview %}
+                    <tbody>
+                    <tr>
+
+                        <td class="p-3" style="text-align:center;">{{ticket.contactPerson__member__first_name}}
+                            {{ticket.contactPerson__member__last_name}}
+                        </td>
+                        <td class="p-3" style="text-align:center;">
+                            {{ticket.requestID}}
+                        </td>
+
+                    </tr>
+                    </tbody>
+
+                    {% endfor %}
+
+                </table>
+        </div>
+    </div>
 
 
-# Automatically downloads to PDF file
-class DownloadPDF(View):
-    def get(self, request, *args, **kwargs):
-        pdf = render_to_pdf('pdf/pdf_template.html', data)
+    <!-- This is for the graph -->
+    <div class="row">
+        <div class="col-sm-3">
+            <div>
+  <canvas id="myChart"></canvas>
+</div>
 
-        response = HttpResponse(pdf, content_type='application/pdf')
-        filename = "Invoice_%s.pdf" % ("12341231")
-        content = "attachment; filename='%s'" % (filename)
-        response['Content-Disposition'] = content
-        return response
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ['All Request', 'Permitted Request', 'Denied Request', 'For Review'],
+      datasets: [{
+        label: '',
+        data: [{{requestCount}}, {{requestCountPermitted}}, {{requestCountDenied}}, {{requestCountPending}}],
+        borderWidth: 1
+      }]
+    },
+
+  });
+</script>
 
 
-def pdfIndex(request):
-    context = {}
-    return render(request, 'pdf/pdf_index.html', context)
+
+
+        </div>
+    </div>
+
+
+
+</div>
+{% endblock %}

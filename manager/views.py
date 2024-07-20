@@ -13,14 +13,54 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
-from django.views.generic import ListView
+# This is for expired Request Pass
+from datetime import timedelta, datetime
+
+# This is for counting per user assigned
+from django.db.models import Count
 
 
 # This is for the Staff employees
 @login_required(login_url='vmsLogin')
 def managerPage(request):
-    staff = RequestForm.objects.all()
-    context = {'staff': staff, 'title': 'Manager'}
+    requestCountPermitted = RequestForm.objects.filter(approved="Permitted").count()
+    requestCountDenied = RequestForm.objects.filter(approved="Denied").count()
+    requestCountPending = RequestForm.objects.filter(approved="Review").count()
+    # counting all request within 30 days
+    requestCount = requestCountPermitted + requestCountDenied + requestCountPending
+
+    # This is for who are active, login, and others under the User auth
+    one_day = datetime.today() - timedelta(days=1)
+    userLogging = User.objects.filter(last_login__gte=one_day, is_superuser=False)
+
+    # This is for overall Permitted per user
+    employee = RequestForm.objects.values(
+        'contactPerson__member__first_name', 'contactPerson__member__last_name'
+    ).annotate(
+        requestID=Count('id'),
+    ).filter(approved="Permitted")
+
+    # This is for overall Denied per user
+    employeeDenied = RequestForm.objects.values(
+        'contactPerson__member__first_name', 'contactPerson__member__last_name'
+    ).annotate(
+        requestID=Count('id'),
+    ).filter(approved="Denied")
+
+    # This is for overall Pending/Review per user
+    employeeReview = RequestForm.objects.values(
+        'contactPerson__member__first_name', 'contactPerson__member__last_name'
+    ).annotate(
+        requestID=Count('id'),
+    ).filter(approved="Review")
+
+    # This is for all active user
+    userList = User.objects.filter(is_superuser=False)
+
+    context = {'title': 'Manager', 'requestCount': requestCount, 'requestCountPermitted': requestCountPermitted,
+               'requestCountDenied': requestCountDenied, 'requestCountPending': requestCountPending,
+               'userLogging': userLogging, 'employee': employee, 'employeeDenied': employeeDenied,
+               'employeeReview': employeeReview, 'userList': userList}
     return render(request, 'manager/managerPage.html', context)
 
 

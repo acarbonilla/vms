@@ -1,4 +1,186 @@
 {% extends 'core/base.html' %}
 {% block content %}
-<h1>Dashboard Manager - sooner...</h1>
+<style>
+   #grapPie{
+    width: 50%;
+    height: 40%;
+
+    margin-left: 10rem;
+    }
+    #myChart{
+
+
+    }
+
+</style>
+<div class="container">
+    <!-- Upper Row Graph-->
+    <div class="row ">
+        <div class="col-sm-4">
+             <h5 style="text-align: center;">Active Members:</h5>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+
+                    <th class="p-3" scope="col">Fullname</th>
+                    <th class="p-3" scope="col">Date Join</th>
+
+                </tr>
+                </thead>
+                {% for userListed in userList %}
+                <tbody>
+                <tr>
+                  <td class="p-3">
+                        {{userListed.first_name}} {{userListed.last_name}}
+                    </td>
+                    <td class="p-3">
+                        {{userListed.date_joined | timesince}}
+                    </td>
+
+                </tr>
+                </tbody>
+
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div class="col-sm-8" id="grapPie">
+            <h3 style="text-align: center">Visitors Request Record</h3>
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <script>
+                const ctx = document.getElementById('myChart');
+
+                new Chart(ctx, {
+                  type: 'pie',
+                  data: {
+                    labels: ['Permitted Request', 'Denied Request', 'For Review'],
+                    datasets: [{
+                      label: 'Request',
+                      data: [{{requestCountPermitted}}, {{requestCountDenied}}, {{requestCountPending}}],
+                      borderWidth: 1
+                    }]
+                  },
+
+                });
+            </script>
+
+
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-sm-3">
+             <h5>Last Seen Login:</h5>
+            {% for online in userLogging %}
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="border-bottom: 1px gray solid;">
+                    {{online.first_name}} {{online.last_name}} -
+                    {{online.last_login | timesince}}
+                </li>
+            </ul>
+
+            {% endfor %}
+
+        </div>
+
+
+        <div class="col-sm-3">
+            <h5 style="text-align: center;">Permitted Request:</h5>
+            <table class="table table-hover border">
+                <thead>
+                <tr>
+
+                    <th class="p-3" scope="col" style="text-align:center;">Fullname</th>
+                    <th class="p-3" scope="col" style="text-align:center;">Total</th>
+
+                </tr>
+                </thead>
+                {% for ticket in employee %}
+                <tbody>
+                <tr>
+
+                    <td class="p-3" style="text-align:center;">{{ticket.contactPerson__member__first_name}}
+                        {{ticket.contactPerson__member__last_name}}
+                    </td>
+                    <td class="p-3" style="text-align:center;">
+                        {{ticket.requestID}}
+                    </td>
+
+                </tr>
+                </tbody>
+
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div class="col-sm-3">
+            <h5 style="text-align: center;">Denied Request:</h5>
+            <table class="table table-hover border">
+                <thead>
+                <tr>
+
+                    <th class="p-3" scope="col" style="text-align:center;">Fullname</th>
+                    <th class="p-3" scope="col" style="text-align:center;">Total</th>
+
+                </tr>
+                </thead>
+                {% for ticket in employeeDenied %}
+                <tbody>
+                <tr>
+
+                    <td class="p-3" style="text-align:center;">{{ticket.contactPerson__member__first_name}}
+                        {{ticket.contactPerson__member__last_name}}
+                    </td>
+                    <td class="p-3" style="text-align:center;">
+                        {{ticket.requestID}}
+                    </td>
+
+                </tr>
+                </tbody>
+
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div class="col-sm-3">
+            <h5 style="text-align: center;">Pending Request:</h5>
+            <table class="table table-hover border">
+                <thead>
+                <tr>
+
+                    <th class="p-3" scope="col" style="text-align:center;">Fullname</th>
+                    <th class="p-3" scope="col" style="text-align:center;">Total</th>
+
+                </tr>
+                </thead>
+                {% for ticket in employeeReview %}
+                <tbody>
+                <tr>
+
+                    <td class="p-3" style="text-align:center;">{{ticket.contactPerson__member__first_name}}
+                        {{ticket.contactPerson__member__last_name}}
+                    </td>
+                    <td class="p-3" style="text-align:center;">
+                        {{ticket.requestID}}
+                    </td>
+
+                </tr>
+                </tbody>
+
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+
+
+</div>
 {% endblock %}
