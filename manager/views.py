@@ -30,7 +30,7 @@ def managerPage(request):
     requestCount = requestCountPermitted + requestCountDenied + requestCountPending
 
     # This is for who are active, login, and others under the User auth
-    one_day = datetime.today() - timedelta(minutes=30)
+    one_day = datetime.today() - timedelta(minutes=10)
     userLogging = User.objects.filter(last_login__gte=one_day, is_superuser=False)
 
     # This is for overall Permitted per user
