@@ -2,39 +2,42 @@
 {% block content %}
 <style>
    #grapPie{
-    width: 50%;
-    height: 40%;
-
+    width: 40%;
     margin-left: 10rem;
     }
+
     #myChart{
 
+    }
 
+    .scrollComp{
+        overflow-y: auto;
+
+        border: none;
+        outline: none;
     }
 
 </style>
 <div class="container">
     <!-- Upper Row Graph-->
     <div class="row ">
-        <div class="col-sm-4">
-             <h5 style="text-align: center;">Active Members:</h5>
+        <div class="col-sm-4 scrollComp">
+             <h5 style="text-align: center;">Regular Visitor's Company:</h5>
             <table class="table table-hover">
                 <thead>
                 <tr>
 
-                    <th class="p-3" scope="col">Fullname</th>
-                    <th class="p-3" scope="col">Date Join</th>
+                    <th class="p-3" scope="col">Company Name:</th>
+
 
                 </tr>
                 </thead>
-                {% for userListed in userList %}
+                {% for visitorCompany in vCompany %}
                 <tbody>
                 <tr>
-                  <td class="p-3">
-                        {{userListed.first_name}} {{userListed.last_name}}
-                    </td>
+
                     <td class="p-3">
-                        {{userListed.date_joined | timesince}}
+                        {{visitorCompany.companyName | capfirst}}
                     </td>
 
                 </tr>

@@ -30,7 +30,7 @@ def managerPage(request):
     requestCount = requestCountPermitted + requestCountDenied + requestCountPending
 
     # This is for who are active, login, and others under the User auth
-    one_day = datetime.today() - timedelta(days=1)
+    one_day = datetime.today() - timedelta(minutes=30)
     userLogging = User.objects.filter(last_login__gte=one_day, is_superuser=False)
 
     # This is for overall Permitted per user
@@ -57,10 +57,13 @@ def managerPage(request):
     # This is for all active user
     userList = User.objects.filter(is_superuser=False)
 
+    # This is for the Visitors Company
+    vCompany = RequestForm.objects.values('companyName').annotate(Count('companyName')).order_by('companyName')
+
     context = {'title': 'Manager', 'requestCount': requestCount, 'requestCountPermitted': requestCountPermitted,
                'requestCountDenied': requestCountDenied, 'requestCountPending': requestCountPending,
                'userLogging': userLogging, 'employee': employee, 'employeeDenied': employeeDenied,
-               'employeeReview': employeeReview, 'userList': userList}
+               'employeeReview': employeeReview, 'userList': userList, 'vCompany': vCompany}
     return render(request, 'manager/managerPage.html', context)
 
 
