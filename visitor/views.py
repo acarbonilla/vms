@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.db.models.functions import Now
 from visitor.forms import VisitorRequestForm
 from django.shortcuts import render, redirect
