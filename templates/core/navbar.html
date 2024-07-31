@@ -55,7 +55,7 @@
                             Manager_Link
                         </a>
                         <ul class="dropdown-menu">
-                          <li class="navList"><a class="dropdown-item" href="{% url 'managerPage' %}" id="navAnchor">Manager Dashboard</a></li>
+                          <li class="navList"><a class="dropdown-item" href="{% url 'managerPage' %}" id="navAnchor">Dashboard</a></li>
 
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="{% url 'mDeptList' %}" id="navAnchor">Listed Department</a></li>
@@ -68,9 +68,9 @@
 
                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{% url 'mUserList' %}" id="navAnchor"> Listed User</a></li>
-                          <li><a class="dropdown-item" href="{% url 'vmsRegister' %}" id="navAnchor"><strong> > </strong> Add User</a></li>
 
-                             <li><hr class="dropdown-divider"></li>
+
+
                         </ul>
                      </li>
 
@@ -136,6 +136,7 @@
                             {{user}}
                         </a>
                         <ul class="dropdown-menu">
+                            <!--
                             <li>
                                 <a class="dropdown-item" href="" id="navAnchor">Profile(soon)</a>
                             </li>
@@ -143,13 +144,18 @@
                              <li>
                                 <a class="dropdown-item" href="" id="navAnchor">Change Password(soon)</a>
                             </li>
+
+                            -->
                             <li>
                                 <a class="dropdown-item" href="{% url 'vmsLogout' %}" id="navAnchor">Sign Out</a>
                             </li>
+                             <!--
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
+
                             <li><a class="dropdown-item" href="#" id="navAnchor">Something else here</a></li>
+                            -->
                         </ul>
                     </li>
                 </ul>

@@ -23,7 +23,7 @@ from django.db.models import Count
 # This is for the Staff employees
 @login_required(login_url='vmsLogin')
 def managerPage(request):
-    requestCountPermitted = RequestForm.objects.filter(approved="Permitted").count()
+    requestCountPermitted = RequestForm.objects.filter(approved="Approve").count()
     requestCountDenied = RequestForm.objects.filter(approved="Denied").count()
     requestCountPending = RequestForm.objects.filter(approved="Review").count()
     # counting all request within 30 days
@@ -38,7 +38,7 @@ def managerPage(request):
         'contactPerson__member__first_name', 'contactPerson__member__last_name'
     ).annotate(
         requestID=Count('id'),
-    ).filter(approved="Permitted")
+    ).filter(approved="Approve")
 
     # This is for overall Denied per user
     employeeDenied = RequestForm.objects.values(
@@ -118,8 +118,8 @@ def mUserList(request):
 # This is for PDF Download
 @login_required(login_url='vmsLogin')
 def pdfListView(request):
-    pdfList = RequestForm.objects.filter(approved="Permitted")
-    pdfListCount = RequestForm.objects.filter(approved="Permitted").count()
+    pdfList = RequestForm.objects.filter(approved="Approve")
+    pdfListCount = RequestForm.objects.filter(approved="Approve").count()
     context = {'pdfList': pdfList, 'pdfListCount': pdfListCount}
     return render(request, 'pdf/pdf_main.html', context)
 

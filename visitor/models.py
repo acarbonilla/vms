@@ -39,7 +39,7 @@ class RequestForm(models.Model):
     infection = models.BooleanField(editable=True)
     typhoid = models.BooleanField(editable=True)
     country = models.CharField(max_length=100, verbose_name="Last Countries Visited")
-    temp = models.IntegerField()
+    temp = models.DecimalField(max_digits=4, max_length=4, decimal_places=2)
 
     agreement = models.BooleanField(editable=True, default=True)
     dateSigned = models.DateField(auto_now=False, verbose_name='Date Signed')
@@ -47,9 +47,9 @@ class RequestForm(models.Model):
     # Approval
     approved = models.CharField(
         max_length=10,
-        choices=[("Review", "Review"), ("Approved", "Approved"), ("Denied", "Denied")],
+        choices=[("Review", "Review"), ("Approve", "Approve"), ("Denied", "Denied")],
         default='Review',
-        verbose_name='For approval'
+        verbose_name='Review'
 
     )
     comment = models.TextField(null=True, blank=True, verbose_name='comment here')

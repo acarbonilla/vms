@@ -35,8 +35,8 @@ def monitoringViews(request):
 
 
 def permitted(request):
-    visitorPermitted = RequestForm.objects.filter(approved="Approved").filter(dateTo__gte=Now() - timedelta(1))
-    visitorPermittedCount = RequestForm.objects.filter(approved="Approved").filter(
+    visitorPermitted = RequestForm.objects.filter(approved="Approve").filter(dateTo__gte=Now() - timedelta(1))
+    visitorPermittedCount = RequestForm.objects.filter(approved="Approve").filter(
         dateTo__gte=Now() - timedelta(1)).count()
     context = {'visitorPermitted': visitorPermitted, 'visitorPermittedCount': visitorPermittedCount,
                'title': 'Request Approved'}
@@ -53,9 +53,9 @@ def denied(request):
 
 def expired(request):
     one_week_ago = datetime.today() - timedelta(days=7)
-    visitorExpired = (RequestForm.objects.filter(approved="Approved").filter(dateTo__lt=Now() - timedelta(1))
+    visitorExpired = (RequestForm.objects.filter(approved="Approve").filter(dateTo__lt=Now() - timedelta(1))
                       .filter(dateTo__gte=one_week_ago))
-    visitorExpiredCount = (RequestForm.objects.filter(approved="Approved").filter(dateTo__lt=Now() - timedelta(1))
+    visitorExpiredCount = (RequestForm.objects.filter(approved="Approve").filter(dateTo__lt=Now() - timedelta(1))
                            .filter(dateTo__gte=one_week_ago)).count()
     context = {'visitorExpired': visitorExpired, 'visitorExpiredCount': visitorExpiredCount, 'title': 'Request Denied'}
     return render(request, 'visitor/permitExpired.html', context)

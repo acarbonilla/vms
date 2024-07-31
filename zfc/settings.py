@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'zfc.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'vms3',
+        'NAME': 'vms',
         'USER': 'carbonillaat',
         'PASSWORD': '$Everyday23',
         'HOST': 'localhost',
