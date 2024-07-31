@@ -87,7 +87,7 @@
                  <p>1. Last place visited(indicate town/city and province) prior this visit at ZFC:</p>
                  <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon3">Last Place Visited</span>
-                    {% render_field form.placesVisited class="form-control vInput" placeholder="ex. Manila, Davao, etc." %}
+                    {% render_field form.placesVisited class="form-control vInput" placeholder="e.g. NCR or Davao." %}
                 </div>
 
                 <p>2. At present, or in the last seven days, are you suffering from:</p>
@@ -368,12 +368,12 @@
                 <p> 4. Countries visited in the last 6 weeks:</p>
                 <div class="input-group mb-3">
 
-                    {% render_field form.country class="form-control vInput" placeholder="e.g. USA, Singapore, etc. / NA if NONE."%}
+                    {% render_field form.country class="form-control vInput" placeholder="e.g. USA, Singapore or NONE."%}
                 </div>
 
                  <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon3">Body Temperature</span>
-                    {% render_field form.temp class="form-control vInput" placeholder="No Decimal Point"%}
+                    {% render_field form.temp class="form-control vInput" placeholder="e.g. 35.6"%}
                  </div>
 
                  <!-- This is for the Declaration of Understanding -->
@@ -397,7 +397,7 @@
                     &nbsp; &nbsp;
                     {% render_field form.agreement class="form-check vCheck"%}
                          &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
-                     <span class="input-group-text" >Date Signed</span>
+                     <span class="input-group-text" >Date Agree</span>
 
                     {% render_field form.dateSigned class="form-control vInput" type="date"%}
                  </div>
