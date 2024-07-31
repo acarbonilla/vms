@@ -47,7 +47,7 @@ class RequestForm(models.Model):
     # Approval
     approved = models.CharField(
         max_length=10,
-        choices=[("Review", "Review"), ("Permitted", "Permitted"), ("Denied", "Denied")],
+        choices=[("Review", "Review"), ("Approved", "Approved"), ("Denied", "Denied")],
         default='Review',
         verbose_name='For approval'
 

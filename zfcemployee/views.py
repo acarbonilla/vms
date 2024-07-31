@@ -25,10 +25,10 @@ def zfcEmployees(request):
 
 @login_required(login_url='vmsLogin')
 def zfcPermitted(request):
-    zfcVisitorPermitted = (RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Permitted")
+    zfcVisitorPermitted = (RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Approved")
                            .filter(dateTo__gte=Now() - timedelta(1)))
     zfcVisitorPermittedCount = (
-        RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Permitted")
+        RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Approved")
         .filter(dateTo__gte=Now() - timedelta(1))).count()
     context = {'zfcVisitorPermitted': zfcVisitorPermitted, 'zfcVisitorPermittedCount': zfcVisitorPermittedCount,
                'title': 'Request Approved'}
@@ -38,9 +38,9 @@ def zfcPermitted(request):
 @login_required(login_url='vmsLogin')
 def zfcExpired(request):
     one_week_ago = datetime.today() - timedelta(days=7)
-    zfcVisitorExpired = (RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Permitted")
+    zfcVisitorExpired = (RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Approved")
                          .filter(dateTo__lt=Now() - timedelta(1))).filter(dateTo__gte=one_week_ago)
-    zfcVisitorExpiredCount = (RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Permitted")
+    zfcVisitorExpiredCount = (RequestForm.objects.filter(contactPerson__member_id=request.user.id, approved="Approved")
                               .filter(dateTo__lt=Now() - timedelta(1))).filter(dateTo__gte=one_week_ago).count()
     context = {'zfcVisitorExpired': zfcVisitorExpired, 'zfcVisitorExpiredCount': zfcVisitorExpiredCount,
                'title': 'Request Expired'}
