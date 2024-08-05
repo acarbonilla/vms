@@ -1,3 +1,12 @@
+<style>
+{% load static %}
+
+#ulID{
+background-color: transparent;
+background-color: rgba(360, 160, 160, 0.3);
+}
+</style>
+<!-- background-image:url('{% static 'img/transparent_black.png' %}');-->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -26,9 +35,10 @@
                 <li class="nav-item dropdown">
                     <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
                        href="" role="button" id="topA">
-                        Monitored Request
+                        Request
                     </a>
-                    <ul class="dropdown-menu">
+
+                    <ul class="dropdown-menu" id="ulID">
                         <li>
                             <a class="dropdown-item" href="{% url 'zfcEmployees' %}" id="navAnchor">Review</a>
                         </li>
@@ -52,22 +62,27 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
                            role="button" aria-expanded="false" id="topA">
-                            Manager_Link
+                            Record
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" id="ulID">
                           <li class="navList"><a class="dropdown-item" href="{% url 'managerPage' %}" id="navAnchor">Dashboard</a></li>
 
                           <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="{% url 'mDeptList' %}" id="navAnchor">Listed Department</a></li>
+                          <li><a class="dropdown-item" href="{% url 'mDeptList' %}" id="navAnchor">
+                             Listed Department
+                          </a>
+                          </li>
                             <li>
                                 <a class="dropdown-item" href="{% url 'mDeptForm' %}" id="navAnchor">
-                                <strong> > </strong>
-                                Add Department
+                                <svg width="15" height="15" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill="#70bf2b" d="M1600 796v192q0 40-28 68t-68 28h-416v416q0 40-28 68t-68 28h-192q-40 0-68-28t-28-68v-416h-416q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h416v-416q0-40 28-68t68-28h192q40 0 68 28t28 68v416h416q40 0 68 28t28 68z"/>
+                                </svg>
+                                Department
                                 </a>
                             </li>
 
                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'mUserList' %}" id="navAnchor"> Listed User</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mUserList' %}" id="navAnchor">Members</a></li>
 
 
 
@@ -77,10 +92,10 @@
                 <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
                            role="button" aria-expanded="false" id="topA">
-                            Download_File
+                           File
                         </a>
-                        <ul class="dropdown-menu">
-                          <li class="navList"><a class="dropdown-item" href="{% url 'pdfListView' %}" id="navAnchor">PDF List</a></li>
+                        <ul class="dropdown-menu" id="ulID">
+                          <li class="navList"><a class="dropdown-item" href="{% url 'pdfListView' %}" id="navAnchor">PDF</a></li>
 
                         </ul>
                      </li>
@@ -96,9 +111,9 @@
                 <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
                    href="{% url 'monitoringViews'%}"
                    role="button" id="topA">
-                    Monitored Request
+                   Request
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" id="ulID">
                     <li>
                         <a class="dropdown-item" href="{% url 'monitoringViews'%}" id="navAnchor">Review</a>
                     </li>
@@ -135,7 +150,7 @@
                            role="button" id="topA">
                             {{user}}
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" id="ulID">
                             <!--
                             <li>
                                 <a class="dropdown-item" href="" id="navAnchor">Profile(soon)</a>
