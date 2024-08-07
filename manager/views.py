@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render
 from django.shortcuts import render, redirect
 # This is for login required
 from django.contrib.auth.decorators import login_required
@@ -15,6 +14,7 @@ from xhtml2pdf import pisa
 
 # This is for expired Request Pass
 from datetime import timedelta, datetime
+import datetime
 
 # This is for counting per user assigned
 from django.db.models import Count
@@ -30,8 +30,8 @@ def managerPage(request):
     requestCount = requestCountPermitted + requestCountDenied + requestCountPending
 
     # This is for who are active, login, and others under the User auth
-    one_day = datetime.today() - timedelta(minutes=10)
-    userLogging = User.objects.filter(last_login__gte=one_day, is_superuser=False)
+    # one_day = datetime.today() - timedelta(minutes=10)
+    # userLogging = User.objects.filter(last_login__gte=one_day, is_superuser=False)
 
     # This is for overall Permitted per user
     employee = RequestForm.objects.values(
@@ -57,13 +57,30 @@ def managerPage(request):
     # This is for all active user
     userList = User.objects.filter(is_superuser=False)
 
+    # This is for monthly total Approve Request
+    # August
+    start_date = datetime.date(2024, 8, 1)
+    end_date = datetime.date(2024, 8, 31)
+    august24 = RequestForm.objects.filter(approved='Approve', dateFrom__range=(start_date, end_date)).count()
+
+    # September
+    septS = datetime.date(2024, 9, 1)
+    septE = datetime.date(2024, 9, 30)
+    september24 = RequestForm.objects.filter(approved='Approve', dateFrom__range=(septS, septE)).count()
+
+    # October
+    octS = datetime.date(2024, 10, 1)
+    octE = datetime.date(2024, 10, 31)
+    october24 = RequestForm.objects.filter(approved='Approve', dateFrom__range=(octS, octE)).count()
+
     # This is for the Visitors Company
     vCompany = RequestForm.objects.values('companyName').annotate(Count('companyName')).order_by('companyName')
 
     context = {'title': 'Manager', 'requestCount': requestCount, 'requestCountPermitted': requestCountPermitted,
                'requestCountDenied': requestCountDenied, 'requestCountPending': requestCountPending,
-               'userLogging': userLogging, 'employee': employee, 'employeeDenied': employeeDenied,
-               'employeeReview': employeeReview, 'userList': userList, 'vCompany': vCompany}
+               'employee': employee, 'employeeDenied': employeeDenied,
+               'employeeReview': employeeReview, 'userList': userList, 'vCompany': vCompany,
+               'august24': august24, 'september24': september24, 'october24': october24}
     return render(request, 'manager/managerPage.html', context)
 
 
@@ -137,32 +154,6 @@ def pdfDetails(request, pk):
 
     # View and download
     response['Content-Disposition'] = 'filename="file.pdf"'
-
-    # find the template and render it.
-    template = get_template(template_path)
-    html = template.render(context)
-
-    # create a pdf
-    pisa_status = pisa.CreatePDF(html, dest=response)
-    # if error then show some funny view
-    if pisa_status.err:
-        return HttpResponse('We had some errors <pre>' + html + '</pre>')
-
-    return response
-
-
-@login_required(login_url='vmsLogin')
-def render_pdf_view(request):
-    template_path = 'pdf/pdf1.html'
-    context = {'myvar': 'this is your template context'}
-    # Create a Django response object, and specify content_type as pdf
-    response = HttpResponse(content_type='application/pdf')
-
-    # if want to download right away without viewing
-    # response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-
-    # View and download
-    response['Content-Disposition'] = 'filename="report.pdf"'
 
     # find the template and render it.
     template = get_template(template_path)
