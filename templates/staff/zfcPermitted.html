@@ -30,7 +30,9 @@
                         </td>
                         <td>{{ticket.fullName}}</td>
                         <td>{{ticket.companyName }}</td>
-                        <td>{{ticket.approved}}</td>
+                        {% if ticket.approved %}
+                             <td>Approved</td>
+                         {% endif %}
                         <td>{{ticket.dateFrom}}</td>
                         <td>{{ticket.dateTo}}</td>
 
