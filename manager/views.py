@@ -19,6 +19,9 @@ import datetime
 # This is for counting per user assigned
 from django.db.models import Count
 
+# This is for CSV
+import csv
+
 
 # This is for the Staff employees
 @login_required(login_url='vmsLogin')
@@ -164,5 +167,35 @@ def pdfDetails(request, pk):
     # if error then show some funny view
     if pisa_status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
+
+    return response
+
+
+# This is for CSC download
+# Generate CSV File Venue List
+def approved_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=approved_backup.csv'
+
+    # Create a csv writer
+    writer = csv.writer(response)
+
+    # Designate The Model
+    approves = RequestForm.objects.filter(approved='Approve').order_by('-dateFrom')
+
+    # Add column headings to the csv file
+    writer.writerow(['id', 'fullName', 'companyName', 'companyAddress', 'reasonOfRequest', 'dateFrom', 'dateTo',
+                     'contactPerson', 'appointment', 'noAppointment', 'guard', 'placesVisited', 'bdv',
+                     'soreThroat', 'cold', 'mumps', 'skin', 'styes', 'jaundices', 'cuts', 'infection',
+                     'typhoid', 'country', 'temp', 'agreement', 'dateSigned', 'approved', 'comment'])
+
+    # Loop Thu and output
+    for approve in approves:
+        writer.writerow([approve.id, approve.fullName, approve.companyName,  approve.companyAddress,
+                         approve.reasonOfRequest,  approve.dateFrom,  approve.dateTo, approve.contactPerson,
+                         approve.appointment,  approve.noAppointment,  approve.guard,  approve.placesVisited,
+                         approve.bdv, approve.soreThroat,  approve.cold,  approve.mumps,  approve.skin,  approve.styes,
+                         approve.jaundice, approve.cuts,  approve.infection, approve.typhoid,  approve.country,
+                         approve.temp,  approve.agreement,  approve.dateSigned,  approve.approved,  approve.comment])
 
     return response

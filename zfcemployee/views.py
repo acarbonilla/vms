@@ -1,8 +1,6 @@
-
 from datetime import timedelta, datetime
 import time
 from django.contrib import messages
-
 
 from django.db.models.functions import Now
 from django.shortcuts import render, redirect
@@ -13,6 +11,8 @@ from zfcemployee.forms import ProfileForm
 
 # This is for login required
 from django.contrib.auth.decorators import login_required
+
+# from django.conf.urls import handler404
 
 
 @login_required(login_url='vmsLogin')
@@ -95,5 +95,3 @@ def zfcProfile(request):
 
     context = {'form': form, 'title': 'ZFC Employee Profile'}
     return render(request, 'staff/zfcprofile.html', context)
-
-

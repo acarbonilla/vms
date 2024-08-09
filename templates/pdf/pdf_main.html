@@ -18,6 +18,7 @@
                         <th scope="col">Company Name</th>
                         <th scope="col">Date Requested</th>
                         <th scope="col">Health Concern</th>
+                        <th scope="col">Approved By:</th>
                     </tr>
                     </thead>
                     {% for ticket in pdfList %}
@@ -59,6 +60,7 @@
                         <td>No Health Concern</td>
                     {% endif %}
 
+                         <td>{{ticket.contactPerson}}</td>
                         <td>
                             <a class="btn btn-secondary" href="{% url 'pdfDetails' ticket.id %}" target="_blank">
                                Download PDF

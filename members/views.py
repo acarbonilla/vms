@@ -56,3 +56,4 @@ def vmsRegister(request):
 
     context = {'form': form, 'title': 'ZFC Sign Up'}
     return render(request, 'members/vmsregister.html', context)
+
